@@ -1,0 +1,27 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1705737843100,
+      "tag": "0000_polite_namora",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1705744681016,
+      "tag": "0001_absurd_flatman",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1705744851977,
+      "tag": "0002_slippery_stepford_cuckoos",
+      "breakpoints": true
+    }
+  ]
+}
