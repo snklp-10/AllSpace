@@ -1,3 +1,4 @@
+import TitleSection from "@/components/landing-page/title-section";
 import React from "react";
 
 const HomePage = () => {
@@ -13,7 +14,12 @@ const HomePage = () => {
             gap-4
             md:justify-center
             md:items-center"
-      ></div>
+      >
+        <TitleSection
+          pill="✨ Your Workspace, Perfected"
+          title="Productivity, it's like a game"
+        />
+      </div>
     </section>
   );
 };
