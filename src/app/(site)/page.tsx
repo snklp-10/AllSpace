@@ -16,8 +16,8 @@ const HomePage = () => {
             md:items-center"
       >
         <TitleSection
-          pill="✨ Your Workspace, Perfected"
-          title="Productivity, it's like a game"
+          pill= "✨ Your Workspace, Perfected"
+          title= "Productivity, it's like a game"
         />
       </div>
     </section>
