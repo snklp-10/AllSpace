@@ -22,6 +22,7 @@ import Loader from "@/components/Loader";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { MailCheck } from "lucide-react";
 import { FormSchema } from "@/lib/types";
+import { actionSignUpUser } from "@/lib/server-action/auth-actions";
 
 const SignUpFormSchema = z
   .object({
@@ -51,14 +52,14 @@ const Signup = () => {
     return searchParams.get("error_description");
   }, [searchParams]);
 
-  const confrimationAndErrorStyles = useMemo(
+  const confirmationAndErrorStyles = useMemo(
     () =>
       clsx("bg-primary", {
         "bg-red-500/10": codeExchangeError,
         "border-red-500/50": codeExchangeError,
         "text-red-700": codeExchangeError,
       }),
-    []
+    [codeExchangeError]
   );
 
   const form = useForm<z.infer<typeof SignUpFormSchema>>({
@@ -66,12 +67,18 @@ const Signup = () => {
     resolver: zodResolver(SignUpFormSchema),
     defaultValues: { email: "", password: "", confirmPassword: "" },
   });
+
   const isLoading = form.formState.isSubmitting;
-  const onSubmit = async ({
-    email,
-    password,
-  }: z.infer<typeof FormSchema>) => {};
-  const signUpHandler = () => {};
+  const onSubmit = async ({ email, password }: z.infer<typeof FormSchema>) => {
+    const { error } = await actionSignUpUser({ email, password });
+    if (error) {
+      setSubmitError(error.message);
+      form.reset();
+      return;
+    }
+    setConfirmation(true);
+  };
+
   return (
     <Form {...form}>
       <form
@@ -163,10 +170,10 @@ const Signup = () => {
         </span>
         {(confirmation || codeExchangeError) && (
           <>
-            <Alert className={confrimationAndErrorStyles}>
+            <Alert className={confirmationAndErrorStyles}>
               {!codeExchangeError && <MailCheck className="h-4 w-4" />}
               <AlertTitle>
-                {codeExchangeError ? "Invalid link" : "Check your email."}
+                {codeExchangeError ? "Invalid Link" : "Check your email."}
               </AlertTitle>
               <AlertDescription>
                 {codeExchangeError || "An email confirmation has been sent."}

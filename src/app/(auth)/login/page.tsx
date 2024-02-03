@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormSchema } from "@/lib/types";
-import { z } from "zod";
+import * as z from "zod";
 import {
   Form,
   FormControl,

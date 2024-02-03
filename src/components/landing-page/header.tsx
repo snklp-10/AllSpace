@@ -5,7 +5,6 @@ import React from "react";
 import Logo from "../../../public/cypresslogo.svg";
 import { Button } from "../ui/button";
 
-const routes = [{ title: "", href: "" }];
 const Header = () => {
   return (
     <header
