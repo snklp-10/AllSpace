@@ -40,7 +40,7 @@ const LoginPage = () => {
       form.reset();
       setSubmitError(error.message);
     }
-    router.replace("/");
+    router.replace("/dashboard");
   };
   return (
     <Form {...form}>
