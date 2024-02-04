@@ -1,11 +1,12 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import Logo from "../../../public/cypresslogo.svg";
 import { Button } from "../ui/button";
 
 const Header = () => {
+  const [path, setpath] = useState("#products");
   return (
     <header
       className="p-4
@@ -35,7 +36,7 @@ const Header = () => {
       gap-2
       justify-end"
       >
-        <Link href={"/login"}>
+        <Link href="/login">
           <Button variant="btn-secondary" className="p-1 hidden sm:block">
             Login
           </Button>
