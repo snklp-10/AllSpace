@@ -5,6 +5,7 @@ import Image from "next/image";
 import Banner from "../../../public/appBanner.png";
 import { CLIENTS } from "@/lib/constants";
 import Cal from "../../../public/cal.png";
+import Link from "next/link";
 
 const HomePage = () => {
   return (
@@ -23,27 +24,28 @@ const HomePage = () => {
         >
           <TitleSection
             pill="✨ Your Workspace, Perfected"
-            title="Productivity, it's like a game"
+            title="Write, plan, share."
+            subheading="AllSpace is the connected workspace where better, faster work happens."
           />
           <div
-            className="bg-white
-          p-[2px]
-          mt-6
+            className="bg-black
+          p-[1px]
+          mt-4
           rounded-xl
-          bg-gradient-to-r
-          from-primary
-          to-brand/brand-primaryBlue
-          sm:w-[300px]"
+          sm:w-[300px]
+          "
           >
             <Button
-              variant="btn-secondary"
+              variant="link"
               className="w-full
-          rounded-[10px]
-          p-6
-          text-2xl
-          bg-background"
+              rounded-[10px]
+              p-6
+              text-1xl
+              text-white
+              font-bold
+              "
             >
-              AllSpace
+              Get AllSpace free
             </Button>
           </div>
           <div
