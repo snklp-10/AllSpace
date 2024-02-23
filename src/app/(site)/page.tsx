@@ -29,20 +29,23 @@ const HomePage = () => {
           />
           <div
             className="bg-black
-          p-[1px]
-          mt-4
+          p-[2px]
+          mt-6
           rounded-xl
           sm:w-[300px]
+          bg-gradient-to-r
+          from-primary
+          to-brand/brand-primaryBlue
           "
           >
             <Button
-              variant="link"
+              variant="btn-secondary"
               className="w-full
               rounded-[10px]
               p-6
               text-1xl
-              text-white
-              font-bold
+              text-2xl
+              bg-background
               "
             >
               Get AllSpace free

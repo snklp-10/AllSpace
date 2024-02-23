@@ -33,7 +33,7 @@ const Header = () => {
       <aside
         className="flex
       w-full
-      gap-2
+      gap-1
       justify-end"
       >
         <Link href="/login">

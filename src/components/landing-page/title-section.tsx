@@ -18,22 +18,23 @@ const TitleSection: React.FC<TitleSectionProps> = ({
         gap-4
         justify-center
         items-start
-        md:items-center"
+        md:items-center
+        "
       >
         <article
           className="rounded-full
             p-[1px]
             text-sm
-            bg-gradient-to-r
-            from-Nuetrals/nuetrals-8
-            to-Nuetrals/nuetrals-13
+            dark:bg-gradient-to-r
+            dark:from-brand/brand-primaryBlue
+            dark:to-brand/brand-primaryPurple
             "
         >
           <div
             className="rounded-full
                 px-3
                 py-1
-                bg-white
+                dark:bg-black
                 "
           >
             {pill}
@@ -52,7 +53,7 @@ const TitleSection: React.FC<TitleSectionProps> = ({
               {title}
             </h2>
             <p
-              className="dark:text-brand/brand-washedPurple-700 sm:max-w-[450px]
+              className="dark:text-washed-Purple/washed-purple-700 sm:max-w-[450px]
                 md:text-center"
             >
               {subheading}
