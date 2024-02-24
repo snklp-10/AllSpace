@@ -13,7 +13,7 @@ const HomePage = () => {
       <section>
         <div
           className="overflow-hidden
-            px-5
+            px-4
             sm:px-6
             mt-10
             sm:flex
