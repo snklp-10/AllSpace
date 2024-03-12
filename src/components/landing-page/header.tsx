@@ -6,7 +6,6 @@ import Logo from "../../../public/cypresslogo.svg";
 import { Button } from "../ui/button";
 
 const Header = () => {
-  const [path, setpath] = useState("#products");
   return (
     <header
       className="p-4

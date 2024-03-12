@@ -24,8 +24,7 @@ const HomePage = () => {
         >
           <TitleSection
             pill="✨ Your Workspace, Perfected"
-            title="Write, plan, share."
-            subheading="AllSpace is the connected workspace where better, faster work happens."
+            title="Productivity like a game"
           />
           <div
             className="bg-black
@@ -34,7 +33,7 @@ const HomePage = () => {
           rounded-xl
           sm:w-[300px]
           bg-gradient-to-r
-          from-primary
+          from-g
           to-brand/brand-primaryBlue
           "
           >
