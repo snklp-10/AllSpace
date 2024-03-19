@@ -36,6 +36,13 @@
       "when": 1710342703215,
       "tag": "0004_brief_meltdown",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1710838393504,
+      "tag": "0005_first_dreadnoughts",
+      "breakpoints": true
     }
   ]
 }

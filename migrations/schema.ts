@@ -207,4 +207,5 @@ export const collaborators = pgTable("collaborators", {
   userId: uuid("user_id")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
+  id: uuid("id").defaultRandom().primaryKey().notNull(),
 });
