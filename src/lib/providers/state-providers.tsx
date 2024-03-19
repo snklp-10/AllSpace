@@ -19,9 +19,19 @@ export type appWorkspacesType = workspace & {
 interface AppState {
   workspaces: appWorkspacesType[] | [];
 }
-type Action = { type: "ADD_WORKSPACE"; payload: appWorkspacesType };
+type Action =
+  | { type: "ADD_WORKSPACE"; payload: appWorkspacesType }
+  | {
+      type: "UPDATE_WORKSPACE";
+      payload: { workspace: Partial<appWorkspacesType>; workspaceId: string };
+    }
+  | {
+      type: "SET_WORKSPACES";
+      payload: { workspaces: appWorkspacesType[] | [] };
+    };
 
 const initialState: AppState = { workspaces: [] };
+
 const appReducer = (
   state: AppState = initialState,
   action: Action
@@ -31,6 +41,24 @@ const appReducer = (
       return {
         ...state,
         workspaces: [...state.workspaces, action.payload],
+      };
+    case "UPDATE_WORKSPACE":
+      return {
+        ...state,
+        workspaces: state.workspaces.map((workspace) => {
+          if (workspace.id === action.payload.workspaceId) {
+            return {
+              ...workspace,
+              ...action.payload.workspace,
+            };
+          }
+          return workspace;
+        }),
+      };
+    case "SET_WORKSPACES":
+      return {
+        ...state,
+        workspaces: action.payload.workspaces,
       };
     default:
       return initialState;
@@ -80,21 +108,21 @@ const AppStateProvider: React.FC<AppStateProviderProps> = ({ children }) => {
       }
   }, [pathname]);
 
-  //   useEffect(() => {
-  //     if (!folderId || !workspaceId) return;
-  //     const fetchFiles = async () => {
-  //       const { error: filesError, data } = await getFiles(folderId);
-  //       if (filesError) {
-  //         console.log(filesError);
-  //       }
-  //       if (!data) return;
-  //       dispatch({
-  //         type: "SET_FILES",
-  //         payload: { workspaceId, files: data, folderId },
-  //       });
-  //     };
-  //     fetchFiles();
-  //   }, [folderId, workspaceId]);
+  // useEffect(() => {
+  //   if (!folderId || !workspaceId) return;
+  //   const fetchFiles = async () => {
+  //     const { error: filesError, data } = await getFiles(folderId);
+  //     if (filesError) {
+  //       console.log(filesError);
+  //     }
+  //     if (!data) return;
+  //     dispatch({
+  //       type: "SET_FILES",
+  //       payload: { workspaceId, files: data, folderId },
+  //     });
+  //   };
+  //   fetchFiles();
+  // }, [folderId, workspaceId]);
 
   useEffect(() => {
     console.log("App State Changed", state);

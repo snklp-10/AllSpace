@@ -29,6 +29,13 @@
       "when": 1706244473935,
       "tag": "0003_exotic_scourge",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1710342703215,
+      "tag": "0004_brief_meltdown",
+      "breakpoints": true
     }
   ]
 }
