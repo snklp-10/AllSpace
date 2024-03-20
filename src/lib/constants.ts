@@ -109,3 +109,5 @@ export const USERS = [
       "Cypress is a fantastic tool that has revolutionized our workflow. Our productivity and collaboration have reached new heights.",
   },
 ];
+
+export const MAX_FOLDERS_FREE_PLAN = 3;
