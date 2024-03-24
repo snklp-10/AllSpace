@@ -43,6 +43,13 @@
       "when": 1710838393504,
       "tag": "0005_first_dreadnoughts",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1711262045189,
+      "tag": "0006_unusual_paibok",
+      "breakpoints": true
     }
   ]
 }
