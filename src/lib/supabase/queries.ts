@@ -29,6 +29,11 @@ export const createWorkspace = async (workspace: workspace) => {
   }
 };
 
+export const deleteWorkspace = async (workspaceId: string) => {
+  if (!workspaceId) return;
+  await db.delete(workspaces).where(eq(workspaces.id, workspaceId));
+};
+
 export const getFolders = async (workspaceId: string) => {
   const isValid = validate(workspaceId);
   if (!isValid)
@@ -76,24 +81,24 @@ export const getWorkspaceDetails = async (workspaceId: string) => {
   }
 };
 
-export const getFileDetails = async (fileId: string) => {
-  const isValid = validate(fileId);
-  if (!isValid) {
-    data: [];
-    error: "Error";
-  }
-  try {
-    const response = (await db
-      .select()
-      .from(files)
-      .where(eq(files.id, fileId))
-      .limit(1)) as File[];
-    return { data: response, error: null };
-  } catch (error) {
-    console.log("🔴Error", error);
-    return { data: [], error: "Error" };
-  }
-};
+// export const getFileDetails = async (fileId: string) => {
+//   const isValid = validate(fileId);
+//   if (!isValid) {
+//     data: [];
+//     error: "Error";
+//   }
+//   try {
+//     const response = (await db
+//       .select()
+//       .from(files)
+//       .where(eq(files.id, fileId))
+//       .limit(1)) as File[];
+//     return { data: response, error: null };
+//   } catch (error) {
+//     console.log("🔴Error", error);
+//     return { data: [], error: "Error" };
+//   }
+// };
 
 export const getPrivateWorkspaces = async (userId: string) => {
   if (!userId) return [];
@@ -245,6 +250,22 @@ export const updateFolder = async (
   }
 };
 
+export const getFiles = async (folderId: string) => {
+  const isValid = validate(folderId);
+  if (!isValid) return { data: null, error: "Error" };
+  try {
+    const results = (await db
+      .select()
+      .from(files)
+      .orderBy(files.createdAt)
+      .where(eq(files.folderId, folderId))) as File[] | [];
+    return { data: results, error: null };
+  } catch (error) {
+    console.log(error);
+    return { data: null, error: "Error" };
+  }
+};
+
 export const createFile = async (file: File) => {
   try {
     await db.insert(files).values(file);
@@ -261,6 +282,23 @@ export const updateFile = async (file: Partial<File>, fileId: string) => {
       .update(files)
       .set(file)
       .where(eq(files.id, fileId));
+    return { data: null, error: null };
+  } catch (error) {
+    console.log(error);
+    return { data: null, error: "Error" };
+  }
+};
+
+export const updateWorkspace = async (
+  workspace: Partial<workspace>,
+  workspaceId: string
+) => {
+  if (!workspaceId) return;
+  try {
+    await db
+      .update(workspaces)
+      .set(workspace)
+      .where(eq(workspaces.id, workspaceId));
     return { data: null, error: null };
   } catch (error) {
     console.log(error);

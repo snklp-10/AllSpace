@@ -10,6 +10,7 @@ import React, {
 } from "react";
 import { File, Folder, workspace } from "../supabase/supabase.types";
 import { usePathname } from "next/navigation";
+import { getFiles } from "../supabase/queries";
 
 export type appFoldersType = Folder & { files: File[] | [] };
 export type appWorkspacesType = workspace & {
@@ -21,6 +22,7 @@ interface AppState {
 }
 type Action =
   | { type: "ADD_WORKSPACE"; payload: appWorkspacesType }
+  | { type: "DELETE_WORKSPACE"; payload: string }
   | {
       type: "UPDATE_WORKSPACE";
       payload: { workspace: Partial<appWorkspacesType>; workspaceId: string };
@@ -82,6 +84,13 @@ const appReducer = (
       return {
         ...state,
         workspaces: [...state.workspaces, action.payload],
+      };
+    case "DELETE_WORKSPACE":
+      return {
+        ...state,
+        workspaces: state.workspaces.filter(
+          (workspace) => workspace.id !== action.payload
+        ),
       };
     case "UPDATE_WORKSPACE":
       return {
@@ -311,21 +320,21 @@ const AppStateProvider: React.FC<AppStateProviderProps> = ({ children }) => {
       }
   }, [pathname]);
 
-  // useEffect(() => {
-  //   if (!folderId || !workspaceId) return;
-  //   const fetchFiles = async () => {
-  //     const { error: filesError, data } = await getFiles(folderId);
-  //     if (filesError) {
-  //       console.log(filesError);
-  //     }
-  //     if (!data) return;
-  //     dispatch({
-  //       type: "SET_FILES",
-  //       payload: { workspaceId, files: data, folderId },
-  //     });
-  //   };
-  //   fetchFiles();
-  // }, [folderId, workspaceId]);
+  useEffect(() => {
+    if (!folderId || !workspaceId) return;
+    const fetchFiles = async () => {
+      const { error: filesError, data } = await getFiles(folderId);
+      if (filesError) {
+        console.log(filesError);
+      }
+      if (!data) return;
+      dispatch({
+        type: "SET_FILES",
+        payload: { workspaceId, files: data, folderId },
+      });
+    };
+    fetchFiles();
+  }, [folderId, workspaceId]);
 
   useEffect(() => {
     console.log("App State Changed", state);

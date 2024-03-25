@@ -54,7 +54,7 @@ export const files = pgTable("files", {
     .defaultNow()
     .notNull(),
   title: text("title").notNull(),
-  inconId: text("icon_id").notNull(),
+  iconId: text("icon_id").notNull(),
   data: text("data"),
   inTrash: text("in_trash"),
   bannerURL: text("banner_url"),

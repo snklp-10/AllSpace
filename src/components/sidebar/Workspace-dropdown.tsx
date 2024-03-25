@@ -41,6 +41,14 @@ const WorkspaceDropdown: React.FC<workspaceDropdownProps> = ({
     setSelecetdOption(option);
     setIsOpen(false);
   };
+
+  useEffect(() => {
+    const findSelectedWorkspace = state.workspaces.find(
+      (workspace) => workspace.id === defaultvalue?.id
+    );
+    if (findSelectedWorkspace) setSelecetdOption(findSelectedWorkspace);
+  }, [state, defaultvalue]);
+
   return (
     <div
       className="relative inline-block
