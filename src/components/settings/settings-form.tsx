@@ -25,11 +25,22 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../ui/select";
+} from "@/components/ui/select";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { ScrollArea } from "../ui/scroll-area";
 import CollaboratorSearch from "../global/collaborator-search";
 import { Button } from "../ui/button";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { Alert, AlertDescription } from "../ui/alert";
 
 const SettingsForm = () => {
@@ -78,7 +89,7 @@ const SettingsForm = () => {
     });
     if (titleTimerRef.current) clearTimeout(titleTimerRef.current);
     titleTimerRef.current = setTimeout(async () => {
-      //   await updateWorkspace({ title: e.target.value }, workspaceId);
+      await updateWorkspace({ title: e.target.value }, workspaceId);
     }, 500);
   };
 
