@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import Logo from "../../../public/cypresslogo.svg";
+import Logo from "../../../public/AllSpace.svg";
 import { Button } from "../ui/button";
 
 const Header = () => {
@@ -26,7 +26,7 @@ const Header = () => {
           className="font-semibold
         dark:text-white"
         >
-          AllSpace.
+          allSpace.
         </span>
       </Link>
       <aside
