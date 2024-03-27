@@ -153,6 +153,7 @@ const SettingsForm = () => {
     if (!error) {
       await updateProfile({ avatarUrl: data.path }, user.id);
       setUploadingProfilePic(false);
+      router.refresh();
     }
   };
   // const onChangeProfilePicture = async (

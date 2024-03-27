@@ -33,13 +33,10 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Badge } from "../ui/badge";
 import Image from "next/image";
-import Banner from "../../../public/BannerImage.png";
 import Emojipicker from "../global/emoji-picker";
-import EmojiPicker from "../global/emoji-picker";
 import { XCircleIcon } from "lucide-react";
 import BannerUpload from "../banner-upload/banner-upload";
 import { useSocket } from "@/lib/providers/socket-provider";
-import QuillCursors from "quill-cursors";
 
 interface QuillEditorProps {
   dirDetails: File | Folder | workspace;
@@ -272,7 +269,7 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
       const editor = document.createElement("div");
       wrapper.append(editor);
       const Quill = (await import("quill")).default;
-      const QuillCursors = require("quill-cursors");
+      const QuillCursors = (await import("quill-cursors")).default;
       Quill.register("modules/cursors", QuillCursors);
       const q = new Quill(editor, {
         theme: "snow",

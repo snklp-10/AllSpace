@@ -32,11 +32,14 @@ const Header = () => {
       <aside
         className="flex
       w-full
-      gap-1
+      gap-2
       justify-end"
       >
         <Link href="/login">
-          <Button variant="btn-secondary" className="p-1 hidden sm:block">
+          <Button
+            variant="btn-secondary"
+            className="font-semibold w-[100px] p-1 hidden sm:block"
+          >
             Login
           </Button>
         </Link>
