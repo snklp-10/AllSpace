@@ -50,6 +50,13 @@
       "when": 1711262045189,
       "tag": "0006_unusual_paibok",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1711458958042,
+      "tag": "0007_majestic_chameleon",
+      "breakpoints": true
     }
   ]
 }

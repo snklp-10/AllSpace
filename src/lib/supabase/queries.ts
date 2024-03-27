@@ -141,6 +141,7 @@ export const getPrivateWorkspaces = async (userId: string) => {
       data: workspaces.data,
       inTrash: workspaces.inTrash,
       logo: workspaces.logo,
+      bannerURL: workspaces.bannerURL,
     })
     .from(workspaces)
     .where(
@@ -169,6 +170,7 @@ export const getCollaboratedWorkspaces = async (userId: string) => {
       data: workspaces.data,
       inTrash: workspaces.inTrash,
       logo: workspaces.logo,
+      bannerURL: workspaces.bannerURL,
     })
     .from(users)
     .innerJoin(collaborators, eq(users.id, collaborators.userId))
@@ -189,6 +191,7 @@ export const getSharedWorkspaces = async (userId: string) => {
       data: workspaces.data,
       inTrash: workspaces.inTrash,
       logo: workspaces.logo,
+      bannerURL: workspaces.bannerURL,
     })
     .from(workspaces)
     .orderBy(workspaces.createdAt)
@@ -333,4 +336,11 @@ export const updateWorkspace = async (
     console.log(error);
     return { data: null, error: "Error" };
   }
+};
+
+export const findUser = async (userId: string) => {
+  const response = await db.query.users.findFirst({
+    where: (u, { eq }) => eq(u.id, userId),
+  });
+  return response;
 };
