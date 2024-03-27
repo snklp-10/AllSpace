@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useAppState } from "@/lib/providers/state-providers";
 import { User, workspace } from "@/lib/supabase/supabase.types";
-import { Briefcase, Lock, Plus, Share } from "lucide-react";
+import { Briefcase, Lock, LogOut, Plus, Share, UserIcon } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
@@ -15,6 +15,7 @@ import {
   deleteWorkspace,
   getCollaborators,
   removeCollaborators,
+  updateProfile,
   updateWorkspace,
 } from "@/lib/supabase/queries";
 import { v4 } from "uuid";
@@ -42,6 +43,8 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Alert, AlertDescription } from "../ui/alert";
+import LogoutButton from "../global/logout-button";
+import CypressProfileIcon from "../icons/cypressProfileIcon";
 
 const SettingsForm = () => {
   const { toast } = useToast();
@@ -132,6 +135,79 @@ const SettingsForm = () => {
       setUploadingLogo(false);
     }
   };
+
+  const onChangeProfilePicture = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    if (!user) return;
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const uuid = v4();
+    const { data, error } = await supabase.storage
+      .from("avatars")
+      .upload(`avatar. ${user.id}.${uuid}`, file, {
+        cacheControl: "5",
+        upsert: true,
+      });
+
+    if (!error) {
+      await updateProfile({ avatarUrl: data.path }, user.id);
+      setUploadingProfilePic(false);
+    }
+  };
+  // const onChangeProfilePicture = async (
+  //   e: React.ChangeEvent<HTMLInputElement>
+  // ) => {
+
+  //   const file = e.target.value;
+  //   try {
+  //     let filePath = "";
+  //     const uploadAvatar = async () => {
+  //       const { data, error } = await supabase.storage
+  //         .from("avatars")
+  //         .upload(`avatar-${v4()}`, file, { cacheControl: "5", upsert: true });
+
+  //       if (error) throw error;
+  //       filePath = data.path;
+  //     };
+
+  //     // const deleteAvatar = async (avatarUrl: string) => {
+  //     //   const { data, error } = await supabase.storage
+  //     //     .from("avatars")
+  //     //     .remove([avatarUrl]);
+  //     //   if (error) throw error;
+  //     //   console.log("Avatar Delete Data:", data);
+  //     // };
+
+  //     // if (!avatarUrl) {
+  //     //   await uploadAvatar();
+  //     // } else {
+  //     //   await deleteAvatar(avatarUrl);
+  //     //   await uploadAvatar();
+  //     // }
+
+  //   //   if (!user) return;
+  //   //   const { data, error } = await updateUserAvatar(
+  //   //     { avatarUrl: filePath },
+  //   //     user.id
+  //   //   );
+  //   //   if (error) {
+  //   //     toast({
+  //   //       title: "Error",
+  //   //       variant: "destructive",
+  //   //       description: "Could not update the profile picture",
+  //   //     });
+  //   //   } else {
+  //   //     toast({
+  //   //       title: "Success",
+  //   //       description: "Updated the profile picture",
+  //   //     });
+  //   //   }
+  //   // } catch (error) {
+  //   //   console.log("Error in uploading profile picture:");
+  //   //   console.log(error);
+  //   // }
+  // };
 
   useEffect(() => {
     const showingWorkspace = state.workspaces.find(
@@ -337,6 +413,42 @@ const SettingsForm = () => {
             Delete Workspace
           </Button>
         </Alert>
+        <p className="flex items-center gap-2 mt-6">
+          <UserIcon size={20} /> Profile
+        </p>
+        <Separator />
+        <div className="flex items-center">
+          <Avatar>
+            <AvatarImage src={""} />
+            <AvatarFallback>
+              <CypressProfileIcon />
+            </AvatarFallback>
+          </Avatar>
+          <div className="flex flex-col ml-6">
+            <small className="text-muted-foreground cursor-not-allowed">
+              {user ? user.email : ""}
+            </small>
+            <Label
+              htmlFor="profilePicture"
+              className="text-sm text-muted-foreground"
+            >
+              Profile Picture
+            </Label>
+            <Input
+              name="profilePicture"
+              type="file"
+              accept="image/*"
+              placeholder="Profile Picture"
+              onChange={onChangeProfilePicture}
+              disabled={uploadingProfilePic}
+            />
+          </div>
+        </div>
+        <LogoutButton>
+          <div className="flex items-center">
+            <LogOut />
+          </div>
+        </LogoutButton>
       </>
       <AlertDialog open={openAlertMessage}>
         <AlertDialogContent>

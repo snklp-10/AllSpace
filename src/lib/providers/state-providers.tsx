@@ -8,17 +8,19 @@ import React, {
   useMemo,
   useReducer,
 } from "react";
-import { File, Folder, workspace } from "../supabase/supabase.types";
+import { File, Folder, User, workspace } from "../supabase/supabase.types";
 import { usePathname } from "next/navigation";
 import { getFiles } from "../supabase/queries";
 
 export type appFoldersType = Folder & { files: File[] | [] };
+export type appUserType = User & { user: User[] };
 export type appWorkspacesType = workspace & {
   folders: appFoldersType[] | [];
 };
 
 interface AppState {
   workspaces: appWorkspacesType[] | [];
+  user: appUserType[] | [];
 }
 type Action =
   | { type: "ADD_WORKSPACE"; payload: appWorkspacesType }
@@ -73,7 +75,7 @@ type Action =
       };
     };
 
-const initialState: AppState = { workspaces: [] };
+const initialState: AppState = { workspaces: [], user: [] };
 
 const appReducer = (
   state: AppState = initialState,

@@ -344,3 +344,12 @@ export const findUser = async (userId: string) => {
   });
   return response;
 };
+
+export const updateProfile = async (profile: Partial<User>, userId: string) => {
+  if (!userId) return;
+  const response = await db
+    .update(users)
+    .set(profile)
+    .where(eq(users.id, userId));
+  return response;
+};
