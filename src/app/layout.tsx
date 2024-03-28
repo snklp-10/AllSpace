@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import type { Metadata } from "next";
 import "./globals.css";
 import db from "@/lib/supabase/db";

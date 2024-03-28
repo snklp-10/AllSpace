@@ -45,10 +45,11 @@ import {
 import { Alert, AlertDescription } from "../ui/alert";
 import LogoutButton from "../global/logout-button";
 import CypressProfileIcon from "../icons/cypressProfileIcon";
+import { users } from "../../../migrations/schema";
 
 const SettingsForm = () => {
   const { toast } = useToast();
-  const { user, subscription } = useSupabaseUser();
+  const { user, subscription, profile } = useSupabaseUser();
   //   const { open, setOpen } = useSubscriptionModal();
   const router = useRouter();
   const supabase = createClientComponentClient();
@@ -345,8 +346,12 @@ const SettingsForm = () => {
                     >
                       <div className="flex gap-4 items-center">
                         <Avatar>
-                          <AvatarImage src="/avatars/7.png" />
-                          <AvatarFallback>PJ</AvatarFallback>
+                          <AvatarImage
+                            src={profile?.avatarUrl ? profile?.avatarUrl : ""}
+                          />
+                          <AvatarFallback>
+                            <CypressProfileIcon />
+                          </AvatarFallback>
                         </Avatar>
                         <div
                           className="text-sm 
@@ -420,7 +425,7 @@ const SettingsForm = () => {
         <Separator />
         <div className="flex items-center">
           <Avatar>
-            <AvatarImage src={""} />
+            <AvatarImage src={profile?.avatarUrl ? profile?.avatarUrl : ""} />
             <AvatarFallback>
               <CypressProfileIcon />
             </AvatarFallback>

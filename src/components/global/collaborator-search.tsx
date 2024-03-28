@@ -17,6 +17,7 @@ import { ScrollArea } from "../ui/scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { getUsersFromSearch } from "@/lib/supabase/queries";
+import CypressProfileIcon from "../icons/cypressProfileIcon";
 
 interface CollaboratorSearchProps {
   existingCollaborators: User[] | [];
@@ -29,7 +30,7 @@ const CollaboratorSearch: React.FC<CollaboratorSearchProps> = ({
   existingCollaborators,
   getCollaborator,
 }) => {
-  const { user } = useSupabaseUser();
+  const { user, profile } = useSupabaseUser();
   const [searchResults, setSearchResults] = useState<User[] | []>([]);
   const timerRef = useRef<ReturnType<typeof setTimeout>>();
 
@@ -103,8 +104,12 @@ const CollaboratorSearch: React.FC<CollaboratorSearchProps> = ({
               >
                 <div className="flex gap-4 items-center">
                   <Avatar className="w-8 h-8">
-                    <AvatarImage src="/avatars/7.png" />
-                    <AvatarFallback>CP</AvatarFallback>
+                    <AvatarImage
+                      src={profile?.avatarUrl ? profile?.avatarUrl : ""}
+                    />
+                    <AvatarFallback>
+                      <CypressProfileIcon />
+                    </AvatarFallback>
                   </Avatar>
                   <div
                     className="text-sm 

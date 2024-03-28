@@ -79,16 +79,6 @@ body {
 ::-webkit-scrollbar {
   display: none;
 }
-@layer components {
-  .empty-placeholder::before {
-    content: "";
-  }
-
-  .empty-placeholder:empty:not(:focus)::before {
-    content: attr(data-text);
-    @apply text-foreground;
-  }
-}
 
 .ce-popover-item:hover {
   @apply bg-muted/40 transition-all !important;

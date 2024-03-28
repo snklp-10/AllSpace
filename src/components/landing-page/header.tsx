@@ -21,12 +21,12 @@ const Header = () => {
       justify-left
       items-center"
       >
-        <Image src={Logo} alt="AllSpace logo" width={25} height={25} />
+        <Image src={Logo} alt="AllSpace logo" width={31} height={31} />
         <span
           className="font-semibold
         dark:text-white"
         >
-          allSpace.
+          AllSpace.
         </span>
       </Link>
       <aside

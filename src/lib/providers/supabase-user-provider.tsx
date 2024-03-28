@@ -1,13 +1,14 @@
 "use client";
 
 import { AuthUser } from "@supabase/supabase-js";
-import { Subscription } from "../supabase/supabase.types";
+import { Subscription, User } from "../supabase/supabase.types";
 import { createContext, useContext, useEffect, useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { getUserSubscriptionStatus } from "../supabase/queries";
 import { useToast } from "@/components/ui/use-toast";
 
 type SupabaseUserContextType = {
+  profile: User | null;
   user: AuthUser | null;
   subscription: Subscription | null;
 };
@@ -15,6 +16,7 @@ type SupabaseUserContextType = {
 const SupabaseUserContext = createContext<SupabaseUserContextType>({
   user: null,
   subscription: null,
+  profile: null,
 });
 
 export const useSupabaseUser = () => {
@@ -30,6 +32,7 @@ export const SupabaseUserProvider: React.FC<SupabaseUserProviderProps> = ({
 }) => {
   const [user, setUser] = useState<AuthUser | null>(null);
   const [subscription, setSubscription] = useState<Subscription | null>(null);
+  const [profile, setProfile] = useState<User | null>(null);
   const { toast } = useToast();
 
   const supabase = createClientComponentClient();
@@ -58,7 +61,7 @@ export const SupabaseUserProvider: React.FC<SupabaseUserProviderProps> = ({
     getUser();
   }, [supabase, toast]);
   return (
-    <SupabaseUserContext.Provider value={{ user, subscription }}>
+    <SupabaseUserContext.Provider value={{ user, subscription, profile }}>
       {children}
     </SupabaseUserContext.Provider>
   );
