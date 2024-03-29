@@ -37,6 +37,7 @@ import Emojipicker from "../global/emoji-picker";
 import { XCircleIcon } from "lucide-react";
 import BannerUpload from "../banner-upload/banner-upload";
 import { useSocket } from "@/lib/providers/socket-provider";
+import QuillCursors from "quill-cursors";
 
 interface QuillEditorProps {
   dirDetails: File | Folder | workspace;
@@ -269,7 +270,7 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
       const editor = document.createElement("div");
       wrapper.append(editor);
       const Quill = (await import("quill")).default;
-      const QuillCursors = require("quill-cursors");
+      const QuillCursors = (await import("quill-cursors")).default;
       Quill.register("modules/cursors", QuillCursors);
       const q = new Quill(editor, {
         theme: "snow",
@@ -393,43 +394,19 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
       const contents = quill.getContents();
       const quillLength = quill.getLength();
       saveTimerRef.current = setTimeout(async () => {
-        if (contents && quillLength !== 1 && fileId) {
-          if (dirType == "workspace") {
-            dispatch({
-              type: "UPDATE_WORKSPACE",
-              payload: {
-                workspace: { data: JSON.stringify(contents) },
-                workspaceId: fileId,
-              },
-            });
-            await updateWorkspace({ data: JSON.stringify(contents) }, fileId);
-          }
-          if (dirType == "folder") {
-            if (!workspaceId) return;
-            dispatch({
-              type: "UPDATE_FOLDER",
-              payload: {
-                folder: { data: JSON.stringify(contents) },
-                workspaceId,
-                folderId: fileId,
-              },
-            });
-            await updateFolder({ data: JSON.stringify(contents) }, fileId);
-          }
-          if (dirType == "file") {
-            if (!workspaceId || !folderId) return;
-            dispatch({
-              type: "UPDATE_FILE",
-              payload: {
-                file: { data: JSON.stringify(contents) },
-                workspaceId,
-                folderId: folderId,
-                fileId,
-              },
-            });
-            await updateFile({ data: JSON.stringify(contents) }, fileId);
-          }
-        }
+        // if (contents && quillLength !== 1 && fileId) {
+        //   if (dirType == "workspace") {
+        //     await updateWorkspace({ data: JSON.stringify(contents) }, fileId);
+        //   }
+        //   if (dirType == "folder") {
+        //     if (!workspaceId) return;
+        //     await updateFolder({ data: JSON.stringify(contents) }, fileId);
+        //   }
+        //   if (dirType == "file") {
+        //     if (!workspaceId || !folderId) return;
+        //     await updateFile({ data: JSON.stringify(contents) }, fileId);
+        //   }
+        // }
         setSaving(false);
       }, 850);
       socket.emit("send-changes", delta, fileId);
@@ -443,6 +420,38 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
       if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
     };
   }, [quill, socket, fileId, user, details, folderId, workspaceId, dispatch]);
+
+  useEffect(() => {
+    if (quill === null || socket === null) return;
+    const contents = quill.getContents();
+    const quillLength = quill.getLength();
+
+    const socketHandler = (deltas: any, id: string) => {
+      if (id === fileId) {
+        quill.updateContents(deltas);
+      }
+    };
+    socket.on("receive-changes", socketHandler);
+    // saveTimerRef.current = setTimeout(async () => {
+    //   if (contents && quillLength !== 1 && fileId) {
+    //     if (dirType == "workspace") {
+    //       await updateWorkspace({ data: JSON.stringify(contents) }, fileId);
+    //     }
+    //     if (dirType == "folder") {
+    //       if (!workspaceId) return;
+    //       await updateFolder({ data: JSON.stringify(contents) }, fileId);
+    //     }
+    //     if (dirType == "file") {
+    //       if (!workspaceId || !folderId) return;
+    //       await updateFile({ data: JSON.stringify(contents) }, fileId);
+    //     }
+    //   }
+    //   setSaving(false);
+    // }, 850);
+    return () => {
+      socket.off("receive-changes", socketHandler);
+    };
+  }, [quill, socket, fileId]);
 
   useEffect(() => {
     if (!fileId || quill === null) return;

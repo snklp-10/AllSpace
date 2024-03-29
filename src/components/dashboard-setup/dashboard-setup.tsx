@@ -88,7 +88,7 @@ const DashboardSetup: React.FC<DashboardSetupProps> = ({
           title: value.workspaceName,
           workspaceOwner: user.id,
           logo: filePath || null,
-          bannerUrl: "",
+          bannerURL: "",
         };
 
         const { data, error: createError } = await createWorkspace(

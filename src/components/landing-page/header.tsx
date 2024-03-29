@@ -11,7 +11,9 @@ const Header = () => {
       className="p-4
   flex
   justify-center
-  items-center"
+  items-center
+  border
+  "
     >
       <Link
         href={"/"}
@@ -37,14 +39,14 @@ const Header = () => {
       >
         <Link href="/login">
           <Button
-            variant="btn-secondary"
+            variant="secondary"
             className="font-semibold w-[100px] p-1 hidden sm:block"
           >
             Login
           </Button>
         </Link>
         <Link href={"/signup"}>
-          <Button variant="btn-primary" className="whitespace-nowrap">
+          <Button variant="default" className="whitespace-nowrap">
             Sign Up
           </Button>
         </Link>

@@ -119,6 +119,10 @@ module.exports = {
         "Red/red-700": "#9f1527",
         "Red/red-800": "#7b111e",
         "Red/red-900": "#5e0d17",
+        "LogoGradient1":"#FFF200",
+        "LogoGradient2":"#FFCF24",
+        "LogoGradient3":"#FF93B1",
+        "LogoGradient4":"#FFFFFF"
       },
       borderRadius: {
         lg: "var(--radius)",

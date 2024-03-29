@@ -52,7 +52,7 @@ const WorkspaceCreator = () => {
         title,
         workspaceOwner: user.id,
         logo: null,
-        bannerUrl: "",
+        bannerURL: "",
       };
       if (permissions === "private") {
         toast({ title: "Success", description: "Created the workspace" });

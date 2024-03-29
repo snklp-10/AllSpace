@@ -24,17 +24,18 @@ const TitleSection: React.FC<TitleSectionProps> = ({
         <article
           className="rounded-full
             p-[1px]
-            text-sm
-            dark:bg-gradient-to-r
-            dark:from-brand/brand-primaryBlue
-            dark:to-brand/brand-primaryPurple
+            text-lg
+            bg-gradient-to-r
+            from-LogoGradient1
+            via-LogoGradient2         
+            to-LogoGradient3
             "
         >
           <div
             className="rounded-full
                 px-3
                 py-1
-                dark:bg-black
+                bg-background
                 "
           >
             {pill}
@@ -63,10 +64,10 @@ const TitleSection: React.FC<TitleSectionProps> = ({
           <h1
             className="text-left 
             text-4xl
-            sm:text-6xl
+            sm:text-7xl
             sm:max-w-[850px]
             md:text-center
-            font-semibold"
+            font-bold"
           >
             {title}
           </h1>
