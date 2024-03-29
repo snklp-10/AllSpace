@@ -1,4 +1,3 @@
-import HeroSection from "@/components/hero-section";
 import Header from "@/components/landing-page/header";
 import React from "react";
 
