@@ -6,7 +6,15 @@ import { useRouter } from "next/navigation";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useAppState } from "@/lib/providers/state-providers";
 import { User, workspace } from "@/lib/supabase/supabase.types";
-import { Briefcase, Lock, LogOut, Plus, Share, UserIcon } from "lucide-react";
+import {
+  Briefcase,
+  Lock,
+  LogOut,
+  Plus,
+  Share,
+  Sun,
+  UserIcon,
+} from "lucide-react";
 import { Separator } from "../ui/separator";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
@@ -46,6 +54,7 @@ import { Alert, AlertDescription } from "../ui/alert";
 import LogoutButton from "../global/logout-button";
 import CypressProfileIcon from "../icons/cypressProfileIcon";
 import { users } from "../../../migrations/schema";
+import ModeToggle from "../global/mode-toggle";
 
 const SettingsForm = () => {
   const { toast } = useToast();
@@ -450,11 +459,21 @@ const SettingsForm = () => {
             />
           </div>
         </div>
-        <LogoutButton>
-          <div className="flex items-center">
-            <LogOut />
+        <p className="flex gap-2">
+          <Sun />
+          Apperance & Logout
+        </p>
+        <Separator />
+        <div className="flex justify-start items-center gap-4 mt-[5px]">
+          <ModeToggle />
+          <div className="border rounded-md">
+            <LogoutButton>
+              <div className="flex items-center">
+                <LogOut />
+              </div>
+            </LogoutButton>
           </div>
-        </LogoutButton>
+        </div>
       </>
       <AlertDialog open={openAlertMessage}>
         <AlertDialogContent>

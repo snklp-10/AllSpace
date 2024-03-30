@@ -568,7 +568,7 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
         p-8"
         >
           <div>{breadCrumbs}</div>
-          <div className="flex items-center gap-4 mb-[20px]">
+          <div className="flex items-center gap-4">
             <div className="flex items-center justify-center h-10">
               {collaborators?.map((collaborator) => (
                 <TooltipProvider key={collaborator.id}>
