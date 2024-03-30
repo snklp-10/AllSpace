@@ -108,7 +108,7 @@ const CollaboratorSearch: React.FC<CollaboratorSearchProps> = ({
                       src={profile?.avatarUrl ? profile?.avatarUrl : ""}
                     />
                     <AvatarFallback>
-                      <CypressProfileIcon />
+                      {user?.email?.slice(0, 1)[0]}
                     </AvatarFallback>
                   </Avatar>
                   <div

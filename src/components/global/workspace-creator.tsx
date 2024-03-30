@@ -21,9 +21,10 @@ import CollaboratorSearch from "./collaborator-search";
 import { ScrollArea } from "../ui/scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useToast } from "../ui/use-toast";
+import CypressProfileIcon from "../icons/cypressProfileIcon";
 
 const WorkspaceCreator = () => {
-  const { user } = useSupabaseUser();
+  const { user, profile } = useSupabaseUser();
   const { toast } = useToast();
   const router = useRouter();
   const [permissions, setPermissions] = useState("private");
@@ -180,8 +181,10 @@ const WorkspaceCreator = () => {
                   >
                     <div className="flex gap-4 items-center">
                       <Avatar>
-                        <AvatarImage src="/avatars/7.png" />
-                        <AvatarFallback>PJ</AvatarFallback>
+                        <AvatarImage src={c?.avatarUrl ? c?.avatarUrl : ""} />
+                        <AvatarFallback>
+                          {c?.email?.slice(0, 1)[0]}
+                        </AvatarFallback>
                       </Avatar>
                       <div
                         className="text-sm 

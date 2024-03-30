@@ -359,7 +359,7 @@ const SettingsForm = () => {
                             src={profile?.avatarUrl ? profile?.avatarUrl : ""}
                           />
                           <AvatarFallback>
-                            <CypressProfileIcon />
+                            {profile?.email?.slice(0, 1)[0]}
                           </AvatarFallback>
                         </Avatar>
                         <div
