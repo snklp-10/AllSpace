@@ -27,7 +27,7 @@ const MobileSidebar: React.FC<MobileSidebarProps> = ({ children }) => {
     <>
       {selectedNav === "sidebar" && <>{children}</>}
       <nav
-        className="bg-black
+        className="bg-background
       backdrop-blur-lg
       sm:hidden 
       fixed 
