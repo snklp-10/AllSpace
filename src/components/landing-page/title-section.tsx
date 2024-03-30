@@ -17,7 +17,7 @@ const TitleSection: React.FC<TitleSectionProps> = ({
         flex-col
         gap-4
         justify-center
-        items-start
+        items-center
         md:items-center
         "
       >
@@ -29,6 +29,7 @@ const TitleSection: React.FC<TitleSectionProps> = ({
             from-LogoGradient1
             via-LogoGradient2         
             to-LogoGradient3
+            text-center
             "
         >
           <div
@@ -44,7 +45,7 @@ const TitleSection: React.FC<TitleSectionProps> = ({
         {subheading ? (
           <>
             <h2
-              className="text-left
+              className="text-center
                 text-3xl
                 sm:text-5xl
                 sm:max-w-[750px]
@@ -55,14 +56,15 @@ const TitleSection: React.FC<TitleSectionProps> = ({
             </h2>
             <p
               className="dark:text-washed-Purple/washed-purple-700 sm:max-w-[450px]
-                md:text-center"
+                md:text-center
+                text-center"
             >
               {subheading}
             </p>
           </>
         ) : (
           <h1
-            className="text-left 
+            className="text-center 
             text-4xl
             sm:text-7xl
             sm:max-w-[850px]

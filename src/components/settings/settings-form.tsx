@@ -231,7 +231,7 @@ const SettingsForm = () => {
   }, [workspaceId]);
 
   return (
-    <div className="flex gap-4 flex-col">
+    <div className="flex gap-4 flex-col mt-[20px] mb-[20px]">
       <p className="flex items-center gap-2 mt-6">
         <Briefcase size={20} />
         Workspace

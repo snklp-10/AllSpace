@@ -55,7 +55,8 @@ const SelectedWorkspace: React.FC<SelectedWorkspaceProps> = ({
         w-[170px] 
         overflow-hidden 
         overflow-ellipsis 
-        whitespace-nowrap"
+        whitespace-nowrap
+        "
         >
           {workspace.title}
         </p>

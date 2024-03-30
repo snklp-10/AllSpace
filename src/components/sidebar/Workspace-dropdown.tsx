@@ -6,6 +6,14 @@ import React, { useEffect, useState } from "react";
 import SelectedWorkspace from "./selected-workspace";
 import CustomDialogTrigger from "../global/custom-dialog-trigger";
 import WorkspaceCreator from "../global/workspace-creator";
+import {
+  ArrowDown,
+  ArrowDownNarrowWideIcon,
+  ChevronDown,
+  Plus,
+} from "lucide-react";
+import { PiUserCirclePlus, PiUserCirclePlusBold } from "react-icons/pi";
+import { Separator } from "../ui/separator";
 
 interface workspaceDropdownProps {
   privateWorkspaces: workspace[] | [];
@@ -51,8 +59,12 @@ const WorkspaceDropdown: React.FC<workspaceDropdownProps> = ({
 
   return (
     <div
-      className="relative inline-block
-  text-left"
+      className="relative block
+    text-left
+    bg-Nuetrals/nuetrals-9/10
+    rounded-md
+    mb-[30px]
+    "
     >
       <div>
         <span onClick={() => setIsOpen(!isOpen)}>
@@ -72,7 +84,7 @@ const WorkspaceDropdown: React.FC<workspaceDropdownProps> = ({
       shadow-md
       z-50
       h-[190px]
-      bg-black/10
+      bg-gray-50/10
       backdrop-blur-lg
       group
       overflow-scroll
@@ -82,12 +94,13 @@ const WorkspaceDropdown: React.FC<workspaceDropdownProps> = ({
           <div
             className="rounded-md
           flex
-          flex-col"
+          flex-col
+          w-full"
           >
             <div className="!p-2">
               {!!privateWorkspaces.length && (
                 <>
-                  <p className="text-muted-foreground">Private</p>
+                  <p className="text-foreground font-semibold">Private</p>
                   <hr />
                   {privateWorkspaces.map((option) => (
                     <SelectedWorkspace
@@ -100,7 +113,7 @@ const WorkspaceDropdown: React.FC<workspaceDropdownProps> = ({
               )}
               {!!sharedWorkspaces.length && (
                 <>
-                  <p className="text-muted-foreground">Shared</p>
+                  <p className="text-foreground font-semibold">Shared</p>
                   <hr />
                   {sharedWorkspaces.map((option) => (
                     <SelectedWorkspace
@@ -113,7 +126,7 @@ const WorkspaceDropdown: React.FC<workspaceDropdownProps> = ({
               )}
               {!!collaboratedWorkspaces.length && (
                 <>
-                  <p className="text-muted-foreground">Shared</p>
+                  <p className="text-foreground font-semibold">Shared</p>
                   <hr />
                   {collaboratedWorkspaces.map((option) => (
                     <SelectedWorkspace
@@ -125,6 +138,7 @@ const WorkspaceDropdown: React.FC<workspaceDropdownProps> = ({
                 </>
               )}
             </div>
+            <Separator className="bg-black/10" />
             <CustomDialogTrigger
               header="Create A Workspace"
               content={<WorkspaceCreator />}
@@ -134,24 +148,28 @@ const WorkspaceDropdown: React.FC<workspaceDropdownProps> = ({
                 className="flex 
               transition-all 
               hover:bg-muted 
+              bg-gradient-to-r
+              from-LogoGradient2
+              via-LogoGradient3
+              to-LogoGradient1
               justify-center 
               items-center 
               gap-2 
               p-2 
-              w-full"
+              w-full
+              font-bold
+              "
               >
-                <article
-                  className="text-slate-500 
-                rounded-full
-                 bg-slate-800 
-                 w-4 
-                 h-4 
+                {/* <article
+                  className="
+                 w-3
+                 h-3
                  flex 
                  items-center 
                  justify-center"
                 >
-                  +
-                </article>
+                
+                </article> */}
                 Create workspace
               </div>
             </CustomDialogTrigger>

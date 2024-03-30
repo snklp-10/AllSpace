@@ -6,6 +6,9 @@ import CypressSettingsIcon from "../icons/cypressSettingsIcon";
 import CypressTrashIcon from "../icons/cypressTrashIcon";
 import Settings from "../settings/settings";
 import Trash from "../trash/trash";
+import UserCard from "./user-card";
+import LogoutButton from "../global/logout-button";
+import { LogOutIcon } from "lucide-react";
 
 interface NativeNavigationProps {
   myWorkspaceId: string;

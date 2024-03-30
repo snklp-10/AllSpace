@@ -100,9 +100,9 @@ const HomePage = () => {
             pill="✨ Your Workspace, Perfected"
             title="Writing Together, in Perfect Sync!"
           />
-          <div className="flex gap-4 pt-2 mb-[100px] items-center justify-center">
+          <div className="flex gap-4 pt-2 mb-[100px] mt-[10px] items-center justify-center ">
             <Link href="/">
-              <Button className="py-1 ">
+              <Button className="py-1">
                 <div className="flex items-center justify-center">
                   <div className="text-lg">Get AllSpace free</div>
                   <div>
@@ -323,11 +323,11 @@ const HomePage = () => {
       >
         <div
           className="w-[30%]
-          blur-[120px]
+          blur-[100px]
           rounded-full
           h-32
           absolute
-          bg-brand/brand-primaryPurple/50
+          bg-brand/brand-washedPurple
           -z-10
           top-22
         "
@@ -357,11 +357,12 @@ const HomePage = () => {
       <section className="relative">
         <div
           className="w-full
-          blur-[120px]
+          blur-[200px]
           rounded-full
           h-32
           absolute
-          bg-brand/brand-primaryPurple/50
+          bg-brand/brand-washedPurple
+          
           -z-100
           top-56
         "

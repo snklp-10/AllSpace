@@ -568,7 +568,7 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
         p-8"
         >
           <div>{breadCrumbs}</div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 mb-[20px]">
             <div className="flex items-center justify-center h-10">
               {collaborators?.map((collaborator) => (
                 <TooltipProvider key={collaborator.id}>
@@ -647,29 +647,31 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
           />
         </div>
       )}
-      <div className="flex justify-center items-center flex-col mt-2 relative">
+      <div className="flex justify-start items-center flex-col mt-2 relative">
         <div
           className="w-full
         self-center
-        
         max-w-[800px]
         flex 
         flex-col  
-         px-7
+         px-4
          lg:my-8"
         >
           <div className="text-[80px]">
             <Emojipicker getvalue={iconOnChange}>
               <div
-                className="w-[100px]
+                className="w-[80px]
                 cursor-pointer
                 transition-colors
-                h-[100px]
+                h-[80px]
                 flex
                 items-center
                 justify-center
                 hover:bg-muted
-                rounded-xl"
+                rounded-xl
+                ml-[-4px]
+                mt-[15px]
+                "
               >
                 {details.iconId}
               </div>
@@ -726,7 +728,11 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
             {dirType.toUpperCase()}
           </span>
         </div>
-        <div id="container" className="max-w-[800px]" ref={wrapperRef}></div>
+        <div
+          id="container"
+          className="max-w-[800px] mb-[100px]"
+          ref={wrapperRef}
+        ></div>
       </div>
     </>
   );

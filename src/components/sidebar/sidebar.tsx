@@ -16,6 +16,8 @@ import NativeNavigation from "./native-navigation";
 import { ScrollArea } from "../ui/scroll-area";
 import FoldersDropdownList from "./folders-dropdown-list";
 import UserCard from "./user-card";
+import AllSpaceLogo from "../../../public/AllSpace.svg";
+import Image from "next/image";
 
 interface Sidebarprops {
   params: { workspaceId: string };
@@ -52,7 +54,7 @@ const Sidebar: React.FC<Sidebarprops> = async ({ params, className }) => {
   return (
     <aside
       className={twMerge(
-        "hidden sm:flex sm:flex-col w-[280px] shrink-0 p-4 md:gap-4 !justify-between ",
+        "hidden sm:flex sm:flex-col w-[280px] shrink-0 p-4 md:gap-4 !justify-between mt-[50px]",
         className
       )}
     >
@@ -67,10 +69,10 @@ const Sidebar: React.FC<Sidebarprops> = async ({ params, className }) => {
             ...sharedWorkspaces,
           ].find((workspace) => workspace.id === params.workspaceId)}
         />
-        <PlanUsage
+        {/* <PlanUsage
           foldersLength={workspaceFolderData?.length || 0}
           subscription={subscriptionData}
-        />
+        /> */}
         <NativeNavigation myWorkspaceId={params.workspaceId} />
         <ScrollArea
           className="overflow-scroll relative
