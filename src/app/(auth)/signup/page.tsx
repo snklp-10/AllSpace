@@ -54,7 +54,7 @@ const Signup = () => {
 
   const confirmationAndErrorStyles = useMemo(
     () =>
-      clsx("bg-primary", {
+      clsx("bg-background", {
         "bg-red-500/10": codeExchangeError,
         "border-red-500/50": codeExchangeError,
         "text-red-700": codeExchangeError,

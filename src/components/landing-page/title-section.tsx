@@ -65,11 +65,12 @@ const TitleSection: React.FC<TitleSectionProps> = ({
         ) : (
           <h1
             className="text-center 
-            text-4xl
+            text-5xl
             sm:text-7xl
             sm:max-w-[850px]
             md:text-center
-            font-bold"
+            font-semibold
+            sm:font-bold"
           >
             {title}
           </h1>

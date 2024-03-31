@@ -37,7 +37,6 @@ import Emojipicker from "../global/emoji-picker";
 import { XCircleIcon } from "lucide-react";
 import BannerUpload from "../banner-upload/banner-upload";
 import { useSocket } from "@/lib/providers/socket-provider";
-import QuillCursors from "quill-cursors";
 
 interface QuillEditorProps {
   dirDetails: File | Folder | workspace;
@@ -249,7 +248,7 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
         type: "DELETE_FILE",
         payload: { fileId, folderId, workspaceId },
       });
-      await deleteFile(fileId);
+      // await deleteFile(fileId);
       router.replace(`/dashboard/${workspaceId}`);
     }
     if (dirType === "folder") {
@@ -258,7 +257,7 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
         type: "DELETE_FOLDER",
         payload: { folderId: fileId, workspaceId },
       });
-      await deleteFolder(fileId);
+      // await deleteFolder(fileId);
       router.replace(`/dashboard/${workspaceId}`);
     }
   };
@@ -504,12 +503,12 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
       <div className="relative">
         {details.inTrash && (
           <article
-            className="py-2 
+            className="py-2
           z-40 
           bg-[#EB5757] 
           flex  
           md:flex-row 
-          flex-col 
+          flex-row
           justify-center 
           items-center 
           gap-4 
@@ -517,7 +516,6 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
           >
             <div
               className="flex 
-            flex-col 
             md:flex-row 
             gap-2 
             justify-center 
@@ -632,7 +630,7 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
         </div>
       </div>
       {details.bannerURL && (
-        <div className="relative w-full h-[200px]">
+        <div className="relative w-full h-[300px]">
           <Image
             src={
               supabase.storage
@@ -640,8 +638,8 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
                 .getPublicUrl(details.bannerURL).data.publicUrl
             }
             fill
-            className="w-full md:h-48
-            h-20
+            className="w-full md:h-55
+            h-30
             object-cover"
             alt="Banner Image"
           />
@@ -669,7 +667,7 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
                 justify-center
                 hover:bg-muted
                 rounded-xl
-                ml-[-4px]
+                ml-[0px]
                 mt-[15px]
                 "
               >
@@ -682,9 +680,10 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
               id={fileId}
               dirType={dirType}
               className="mt-2
+
               text-sm
               text-muted-foreground
-              p-2
+              p-0
               hover:text-card-foreground
               transition-all
               rounded-md"

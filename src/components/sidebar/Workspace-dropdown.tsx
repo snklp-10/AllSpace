@@ -160,16 +160,6 @@ const WorkspaceDropdown: React.FC<workspaceDropdownProps> = ({
               font-bold
               "
               >
-                {/* <article
-                  className="
-                 w-3
-                 h-3
-                 flex 
-                 items-center 
-                 justify-center"
-                >
-                
-                </article> */}
                 Create workspace
               </div>
             </CustomDialogTrigger>

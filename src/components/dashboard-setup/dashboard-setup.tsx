@@ -188,16 +188,14 @@ const DashboardSetup: React.FC<DashboardSetupProps> = ({
               <small className="text-red-600">
                 {errors?.workspaceName?.message?.toString()}
               </small>
-              {subscription?.status !== "active" && (
-                <small
-                  className="
+              <small
+                className="
                   text-muted-foreground
                   block
               "
-                >
-                  To customize your workspace, you need to be on a Pro Plan
-                </small>
-              )}
+              >
+                Upload a logo to the workspace
+              </small>
             </div>
             <div className="self-end">
               <Button disabled={isLoading} type="submit">

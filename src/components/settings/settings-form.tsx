@@ -271,13 +271,11 @@ const SettingsForm = () => {
           accept="image/*"
           placeholder="Workspace Logo"
           onChange={onChangeWorkspaceLogo}
-          disabled={uploadingLogo || subscription?.status !== "active"}
+          disabled={uploadingLogo}
         />
-        {subscription?.status !== "active" && (
-          <small className="text-muted-foreground">
-            To customize your workspace, you need to be on a Pro Plan
-          </small>
-        )}
+        <small className="text-muted-foreground">
+          Upload a logo to your workspace
+        </small>
       </div>
       <>
         <Label htmlFor="permissions">Permissions</Label>

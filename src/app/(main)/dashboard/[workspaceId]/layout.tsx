@@ -1,5 +1,6 @@
 import MobileSidebar from "@/components/sidebar/mobile-sidebar";
 import Sidebar from "@/components/sidebar/sidebar";
+import UserCard from "@/components/sidebar/user-card";
 import React from "react";
 interface LayoutProps {
   children: React.ReactNode;

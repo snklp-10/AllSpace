@@ -4,12 +4,11 @@ import React, { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Banner from "../../../public/appBanner.png";
-import { CLIENTS } from "@/lib/constants";
+import { CLIENTS, USERS } from "@/lib/constants";
 import Cal from "../../../public/cal.png";
 import Link from "next/link";
 import { useMediaQuery } from "react-responsive";
 import { motion } from "framer-motion";
-
 import {
   PiArrowRight,
   PiBookOpenTextLight,
@@ -17,6 +16,23 @@ import {
   PiSparkleLight,
   PiTargetLight,
 } from "react-icons/pi";
+import CustomCard from "@/components/landing-page/custom-card";
+import { randomUUID } from "crypto";
+import { twMerge } from "tailwind-merge";
+import clsx from "clsx";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { CardDescription, CardTitle } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
+import { Lora } from "next/font/google";
+import ImageLogo from "../../../public/logoipsum-327.svg";
+import Footer from "@/components/footer";
+import { Separator } from "@/components/ui/separator";
+
+const font = Lora({
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
 const tabs = [
   {
     icon: (
@@ -100,8 +116,8 @@ const HomePage = () => {
             pill="✨ Your Workspace, Perfected"
             title="Writing Together, in Perfect Sync!"
           />
-          <div className="flex gap-4 pt-2 mb-[100px] mt-[10px] items-center justify-center ">
-            <Link href="/">
+          <div className="flex gap-4 pt-2 mt-[10px] items-center justify-center ">
+            <Link href="/signup">
               <Button className="py-1">
                 <div className="flex items-center justify-center">
                   <div className="text-lg">Get AllSpace free</div>
@@ -111,6 +127,15 @@ const HomePage = () => {
                 </div>
               </Button>
             </Link>
+          </div>
+          <div className="pt-10 xl:pt-20 items-center justify-center">
+            <Image
+              src="/assets/ReadingSideDoodle.svg"
+              alt="hero image"
+              width={1000}
+              height={1000}
+              className="flex items-center justify-center mx-auto w-60 xl:w-80"
+            />
           </div>
           {isSmallScreen ? (
             <div className="px-8">
@@ -126,8 +151,8 @@ const HomePage = () => {
         
                 ${
                   activeTab.name === tab.name
-                    ? "rounded-md md:rounded-xl bg-[#f6f5f4]  md:bg-white border-gray-200 md:border items-center justify-center flex p-1 "
-                    : "md:bg-[#f6f5f4]   rounded-md xl:rounded-xl p-1 items-center justify-center hover:bg-[#eae7e7] "
+                    ? "rounded-md md:rounded-xl bg-background  md:bg-background border-gray-200 md:border items-center justify-center flex p-1 "
+                    : "md:bg-[#f6f5f4] rounded-md xl:rounded-xl p-1 items-center justify-center hover:bg-[#eae7e7] "
                 } `}
                     onClick={() => setActiveTab(tab)}
                   >
@@ -155,9 +180,7 @@ const HomePage = () => {
              border
              p-20
              xl:p-40
-             rounded-xl
-          
-             
+             rounded-xl        
                 "
                     />
                   </div>
@@ -190,11 +213,13 @@ const HomePage = () => {
                   <div className="px-4">
                     <div className="flex items-center">
                       <div>{tab.icon}</div>
-                      <div className="text-2xl font-semibold">{tab.name}</div>
+                      <div className="text-2xl font-semibold text-black">
+                        {tab.name}
+                      </div>
 
                       {/* Render feature tag only for "AI" tab */}
                       {tab.name === "AI" && (
-                        <div className="text-xs font-semibold text-purple-600 bg-purple-100 px-2 py-1 rounded-full ml-2">
+                        <div className="text-xs font-semibold text-gray-600 bg-purple-100 px-2 py-1 rounded-full ml-2 ">
                           {tab.feature}
                         </div>
                       )}
@@ -321,17 +346,6 @@ const HomePage = () => {
         relative
       "
       >
-        <div
-          className="w-[30%]
-          blur-[100px]
-          rounded-full
-          h-32
-          absolute
-          bg-brand/brand-washedPurple
-          -z-10
-          top-22
-        "
-        />
         <TitleSection
           title="Keep track of your meetings all in one place"
           subheading="Capture your ideas, thoughts, and meeting notes in a structured and organized manner."
@@ -353,20 +367,49 @@ const HomePage = () => {
         >
           <Image src={Cal} alt="Banner" className="rounded-2xl" />
         </div>
+        <div className="xl:pt-32 pt-24 relative flex justify-center items-center flex-col">
+          <div className="xl:text-5xl text-3xl 2xl:w-3/5 w-3/5 font-medium xl:w-1/3 mx-auto text-center">
+            Consolidate tools. Cut costs.
+          </div>
+
+          <Image
+            src="/assets/canva-logo.png"
+            alt="Canva logo"
+            width={1000}
+            height={1000}
+            className="pt-10 xl:pt-10 
+                xl:w-1/3
+                w-4/5   
+                "
+          />
+
+          <div
+            className={cn(
+              "flex items-center justify-center text-xl xl:text-2xl pt-10 pb-4  xl:py-10 px-8  text-center  w-4/5 ",
+              font.className
+            )}
+          >
+            &quot;We got rid of nearly a dozen different tools because of what
+            AllSpace does for us.&quot;
+          </div>
+
+          <div className="items-center flex justify-center flex-col">
+            <Image
+              src={ImageLogo}
+              alt="Canva logo"
+              width={1000}
+              height={1000}
+              className="pt-2 xl:pt-0  w-10 xl:w-14 "
+            />
+
+            <div className=" text-center">
+              <div className="text-sm  font-medium pt-4">Carlos Hernandez</div>
+              <div className="text-sm">Marketing Director, Palium Software</div>
+            </div>
+          </div>
+        </div>
       </section>
       <section className="relative">
-        <div
-          className="w-full
-          blur-[200px]
-          rounded-full
-          h-32
-          absolute
-          bg-brand/brand-washedPurple
-          
-          -z-100
-          top-56
-        "
-        />
         <div
           className="mt-20
           px-4
@@ -383,8 +426,66 @@ const HomePage = () => {
           personal and professional productivity needs."
             pill="Testimonials"
           />
+          {[...Array(1)].map((arr, index) => (
+            <div
+              key={crypto.randomUUID()}
+              className={twMerge(
+                clsx("mt-10 flex flex-nowrap gap-6 self-start", {
+                  "flex-row-reverse": index === 1,
+                  "animate-[slide_250s_linear_infinite]": true,
+                  "animate-[slide_250s_linear_infinite_reverse]": index === 1,
+                  "ml-[100vw]": index === 1,
+                }),
+                "hover:paused",
+                "mb-[50px]"
+              )}
+            >
+              {USERS.map((testimonial, index) => (
+                <CustomCard
+                  key={testimonial.name}
+                  className="w-[500px]
+                  shrink-0s
+                  rounded-xl
+                  bg-brand/brand-washedBlue/20
+                  border-none
+
+                "
+                  cardHeader={
+                    <div
+                      className="flex
+                      items-center
+                      gap-4
+                  "
+                    >
+                      <Avatar>
+                        <AvatarImage src={`/avatars/${index + 1}.png`} />
+                        <AvatarFallback>
+                          {testimonial.name.slice(0, 1)[0]}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <CardTitle className="text-foreground">
+                          {testimonial.name}
+                        </CardTitle>
+                        <CardDescription className="dark:text-washed-purple-800">
+                          {testimonial.name.toLocaleLowerCase()}
+                        </CardDescription>
+                      </div>
+                    </div>
+                  }
+                  cardContent={
+                    <p className="dark:text-washed-purple-800">
+                      {testimonial.message}
+                    </p>
+                  }
+                ></CustomCard>
+              ))}
+            </div>
+          ))}
         </div>
       </section>
+      <Separator />
+      <Footer />
     </>
   );
 };
