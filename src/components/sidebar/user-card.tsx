@@ -56,9 +56,6 @@ const UserCard: React.FC<UserCardProps> = async ({ subscription }) => {
           </AvatarFallback>
         </Avatar>
         <div className="flex flex-col">
-          <span className="text-muted-foreground">
-            {subscription?.status === "active" ? "Pro Plan" : "Free Plan"}
-          </span>
           <small
             className="w-[100px] 
           overflow-hidden 
