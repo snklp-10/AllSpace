@@ -513,7 +513,7 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
 
   return (
     <>
-      {isConnected ? "connevted" : "not connected "}
+      {/* {isConnected ? "connevted" : "not connected "} */}
       <div className="relative">
         {details.inTrash && (
           <article
