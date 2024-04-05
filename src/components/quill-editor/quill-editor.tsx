@@ -37,6 +37,7 @@ import Emojipicker from "../global/emoji-picker";
 import { XCircleIcon } from "lucide-react";
 import BannerUpload from "../banner-upload/banner-upload";
 import { useSocket } from "@/lib/providers/socket-provider";
+import Loader from "../global/Loader";
 
 interface QuillEditorProps {
   dirDetails: File | Folder | workspace;
@@ -284,6 +285,51 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
     }
   }, []);
 
+  const manualSave = () => {
+    const contents = quill.getContents();
+    const quillLength = quill.getLength();
+    saveTimerRef.current = setTimeout(async () => {
+      if (contents && quillLength !== 1 && fileId) {
+        if (dirType == "workspace") {
+          dispatch({
+            type: "UPDATE_WORKSPACE",
+            payload: {
+              workspace: { data: JSON.stringify(contents) },
+              workspaceId: fileId,
+            },
+          });
+          await updateWorkspace({ data: JSON.stringify(contents) }, fileId);
+        }
+        if (dirType == "folder") {
+          if (!workspaceId) return;
+          dispatch({
+            type: "UPDATE_FOLDER",
+            payload: {
+              folder: { data: JSON.stringify(contents) },
+              workspaceId,
+              folderId: fileId,
+            },
+          });
+          await updateFolder({ data: JSON.stringify(contents) }, fileId);
+        }
+        if (dirType == "file") {
+          if (!workspaceId || !folderId) return;
+          dispatch({
+            type: "UPDATE_FILE",
+            payload: {
+              file: { data: JSON.stringify(contents) },
+              workspaceId,
+              folderId: folderId,
+              fileId,
+            },
+          });
+          await updateFile({ data: JSON.stringify(contents) }, fileId);
+        }
+      }
+      router.refresh();
+    }, 850);
+  };
+
   useEffect(() => {
     if (!fileId) return;
     let selectedDir;
@@ -393,19 +439,6 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
       const contents = quill.getContents();
       const quillLength = quill.getLength();
       saveTimerRef.current = setTimeout(async () => {
-        if (contents && quillLength !== 1 && fileId) {
-          if (dirType == "workspace") {
-            await updateWorkspace({ data: JSON.stringify(contents) }, fileId);
-          }
-          if (dirType == "folder") {
-            if (!workspaceId) return;
-            await updateFolder({ data: JSON.stringify(contents) }, fileId);
-          }
-          if (dirType == "file") {
-            if (!workspaceId || !folderId) return;
-            await updateFile({ data: JSON.stringify(contents) }, fileId);
-          }
-        }
         setSaving(false);
       }, 850);
       socket.emit("send-changes", delta, fileId);
@@ -422,31 +455,12 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
 
   useEffect(() => {
     if (quill === null || socket === null) return;
-    const contents = quill.getContents();
-    const quillLength = quill.getLength();
-
     const socketHandler = (deltas: any, id: string) => {
       if (id === fileId) {
         quill.updateContents(deltas);
       }
     };
     socket.on("receive-changes", socketHandler);
-    // saveTimerRef.current = setTimeout(async () => {
-    //   if (contents && quillLength !== 1 && fileId) {
-    //     if (dirType == "workspace") {
-    //       await updateWorkspace({ data: JSON.stringify(contents) }, fileId);
-    //     }
-    //     if (dirType == "folder") {
-    //       if (!workspaceId) return;
-    //       await updateFolder({ data: JSON.stringify(contents) }, fileId);
-    //     }
-    //     if (dirType == "file") {
-    //       if (!workspaceId || !folderId) return;
-    //       await updateFile({ data: JSON.stringify(contents) }, fileId);
-    //     }
-    //   }
-    //   setSaving(false);
-    // }, 850);
     return () => {
       socket.off("receive-changes", socketHandler);
     };
@@ -499,7 +513,7 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
 
   return (
     <>
-      {/* {isConnected ? "connevted" : "not connected "} */}
+      {isConnected ? "connevted" : "not connected "}
       <div className="relative">
         {details.inTrash && (
           <article
@@ -626,6 +640,17 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
                 Saved
               </Badge>
             )}
+            <div>
+              <Button
+                variant="secondary"
+                onClick={manualSave}
+                className="hover:bg-slate-200
+                hover:text-black
+                "
+              >
+                Save Realtime Changes
+              </Button>
+            </div>
           </div>
         </div>
       </div>
@@ -658,10 +683,10 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
           <div className="text-[80px]">
             <Emojipicker getvalue={iconOnChange}>
               <div
-                className="w-[80px]
+                className="w-[100px]
                 cursor-pointer
                 transition-colors
-                h-[80px]
+                h-[100px]
                 flex
                 items-center
                 justify-center

@@ -74,10 +74,6 @@ const SettingsForm = () => {
 
   const addCollaborator = async (profile: User) => {
     if (!workspaceId) return;
-    if (subscription?.status !== "active" && collaborators.length >= 2) {
-      //   setOpen(true);
-      return;
-    }
     await addCollaborators([profile], workspaceId);
     setCollaborators([...collaborators, profile]);
   };
@@ -166,59 +162,6 @@ const SettingsForm = () => {
       router.refresh();
     }
   };
-  // const onChangeProfilePicture = async (
-  //   e: React.ChangeEvent<HTMLInputElement>
-  // ) => {
-
-  //   const file = e.target.value;
-  //   try {
-  //     let filePath = "";
-  //     const uploadAvatar = async () => {
-  //       const { data, error } = await supabase.storage
-  //         .from("avatars")
-  //         .upload(`avatar-${v4()}`, file, { cacheControl: "5", upsert: true });
-
-  //       if (error) throw error;
-  //       filePath = data.path;
-  //     };
-
-  //     // const deleteAvatar = async (avatarUrl: string) => {
-  //     //   const { data, error } = await supabase.storage
-  //     //     .from("avatars")
-  //     //     .remove([avatarUrl]);
-  //     //   if (error) throw error;
-  //     //   console.log("Avatar Delete Data:", data);
-  //     // };
-
-  //     // if (!avatarUrl) {
-  //     //   await uploadAvatar();
-  //     // } else {
-  //     //   await deleteAvatar(avatarUrl);
-  //     //   await uploadAvatar();
-  //     // }
-
-  //   //   if (!user) return;
-  //   //   const { data, error } = await updateUserAvatar(
-  //   //     { avatarUrl: filePath },
-  //   //     user.id
-  //   //   );
-  //   //   if (error) {
-  //   //     toast({
-  //   //       title: "Error",
-  //   //       variant: "destructive",
-  //   //       description: "Could not update the profile picture",
-  //   //     });
-  //   //   } else {
-  //   //     toast({
-  //   //       title: "Success",
-  //   //       description: "Updated the profile picture",
-  //   //     });
-  //   //   }
-  //   // } catch (error) {
-  //   //   console.log("Error in uploading profile picture:");
-  //   //   console.log(error);
-  //   // }
-  // };
 
   useEffect(() => {
     const showingWorkspace = state.workspaces.find(
@@ -353,11 +296,9 @@ const SettingsForm = () => {
                     >
                       <div className="flex gap-4 items-center">
                         <Avatar>
-                          <AvatarImage
-                            src={profile?.avatarUrl ? profile?.avatarUrl : ""}
-                          />
+                          <AvatarImage src={c?.avatarUrl ? c?.avatarUrl : ""} />
                           <AvatarFallback>
-                            {profile?.email?.slice(0, 1)[0]}
+                            {c?.email?.slice(0, 1)[0].toUpperCase()}
                           </AvatarFallback>
                         </Avatar>
                         <div
@@ -434,7 +375,7 @@ const SettingsForm = () => {
           <Avatar>
             <AvatarImage src={profile?.avatarUrl ? profile?.avatarUrl : ""} />
             <AvatarFallback>
-              <CypressProfileIcon />
+              {profile?.email?.slice(0, 1)[0].toUpperCase()}
             </AvatarFallback>
           </Avatar>
           <div className="flex flex-col ml-6">
