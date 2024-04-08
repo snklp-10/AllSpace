@@ -1,5 +1,5 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import React from "react";
+import React, { Children } from "react";
 import { cookies } from "next/headers";
 import {
   getCollaboratedWorkspaces,

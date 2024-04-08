@@ -296,9 +296,9 @@ const SettingsForm = () => {
                     >
                       <div className="flex gap-4 items-center">
                         <Avatar>
-                          <AvatarImage src={c?.avatarUrl ? c?.avatarUrl : ""} />
+                          <AvatarImage src={c.avatarUrl ? c.avatarUrl : ""} />
                           <AvatarFallback>
-                            {c?.email?.slice(0, 1)[0].toUpperCase()}
+                            {c.email?.slice(0, 1)[0].toUpperCase()}
                           </AvatarFallback>
                         </Avatar>
                         <div
@@ -373,7 +373,7 @@ const SettingsForm = () => {
         <Separator />
         <div className="flex items-center">
           <Avatar>
-            <AvatarImage src={profile?.avatarUrl ? profile?.avatarUrl : ""} />
+            <AvatarImage src={profile?.avatarUrl ? profile.avatarUrl : ""} />
             <AvatarFallback>
               {profile?.email?.slice(0, 1)[0].toUpperCase()}
             </AvatarFallback>

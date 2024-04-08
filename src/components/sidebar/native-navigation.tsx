@@ -8,7 +8,8 @@ import Settings from "../settings/settings";
 import Trash from "../trash/trash";
 import UserCard from "./user-card";
 import LogoutButton from "../global/logout-button";
-import { LogOutIcon } from "lucide-react";
+import { LogOutIcon, SparkleIcon, Sparkles } from "lucide-react";
+import AllspaceAI from "../AI/Allspace-Ai";
 
 interface NativeNavigationProps {
   myWorkspaceId: string;
@@ -26,7 +27,7 @@ const NativeNavigation: React.FC<NativeNavigationProps> = ({
           <Link
             className="group/native
             flex
-            text-Neutrals/neutrals-7
+            text-Nuetrals/nuetrals-7
             transition-all
             gap-2
           "
@@ -40,7 +41,7 @@ const NativeNavigation: React.FC<NativeNavigationProps> = ({
           <li
             className="group/native
             flex
-            text-Neutrals/neutrals-7
+            text-Nuetrals/nuetrals-7
             transition-all
             gap-2
           "
@@ -62,6 +63,20 @@ const NativeNavigation: React.FC<NativeNavigationProps> = ({
             <span>Trash</span>
           </li>
         </Trash>
+        <AllspaceAI>
+          <li
+            className="group/native
+        flex
+        text-Nuetrals/nuetrals-6
+        transition-all
+        gap-2
+        cursor-pointer
+        font-bold"
+          >
+            <Sparkles />
+            <span>AllSpace AI</span>
+          </li>
+        </AllspaceAI>
       </ul>
     </nav>
   );

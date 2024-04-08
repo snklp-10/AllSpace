@@ -37,7 +37,8 @@ import Emojipicker from "../global/emoji-picker";
 import { XCircleIcon } from "lucide-react";
 import BannerUpload from "../banner-upload/banner-upload";
 import { useSocket } from "@/lib/providers/socket-provider";
-import Loader from "../global/Loader";
+import generatePDF, { usePDF } from "react-to-pdf";
+import { workspaces } from "../../../migrations/schema";
 
 interface QuillEditorProps {
   dirDetails: File | Folder | workspace;
@@ -435,11 +436,11 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
     const quillHandler = (delta: any, oldDelta: any, source: any) => {
       if (source !== "user") return;
       if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
-      setSaving(true);
+      // setSaving(true);
       const contents = quill.getContents();
       const quillLength = quill.getLength();
       saveTimerRef.current = setTimeout(async () => {
-        setSaving(false);
+        // setSaving(false);
       }, 850);
       socket.emit("send-changes", delta, fileId);
     };
@@ -574,14 +575,14 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
         flex-col-reverse 
         sm:flex-row 
         sm:justify-between 
-        justify-center 
+        justify-between 
         sm:items-center 
         sm:p-2 
         p-8"
         >
           <div>{breadCrumbs}</div>
           <div className="flex items-center gap-4">
-            <div className="flex items-center justify-center h-10">
+            <div className="flex items-center justify-between h-10">
               {collaborators?.map((collaborator) => (
                 <TooltipProvider key={collaborator.id}>
                   <Tooltip>
@@ -616,39 +617,18 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
                 </TooltipProvider>
               ))}
             </div>
-            {saving ? (
-              <Badge
-                variant="secondary"
-                className="bg-orange-600 top-4
-                text-white
-                right-4
-                z-50
-                "
-              >
-                Saving...
-              </Badge>
-            ) : (
-              <Badge
-                variant="secondary"
-                className="bg-emerald-600 
-                top-4
-              text-white
-              right-4
-              z-50
-              "
-              >
-                Saved
-              </Badge>
-            )}
             <div>
               <Button
                 variant="secondary"
                 onClick={manualSave}
                 className="hover:bg-slate-200
                 hover:text-black
+                px-6
+                font-bold
+                right-4
                 "
               >
-                Save Realtime Changes
+                Save
               </Button>
             </div>
           </div>
