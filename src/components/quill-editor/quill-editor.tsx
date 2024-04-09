@@ -37,8 +37,6 @@ import Emojipicker from "../global/emoji-picker";
 import { XCircleIcon } from "lucide-react";
 import BannerUpload from "../banner-upload/banner-upload";
 import { useSocket } from "@/lib/providers/socket-provider";
-import generatePDF, { usePDF } from "react-to-pdf";
-import { workspaces } from "../../../migrations/schema";
 
 interface QuillEditorProps {
   dirDetails: File | Folder | workspace;

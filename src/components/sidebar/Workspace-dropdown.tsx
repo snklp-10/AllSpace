@@ -148,10 +148,6 @@ const WorkspaceDropdown: React.FC<workspaceDropdownProps> = ({
                 className="flex 
               transition-all 
               hover:bg-muted 
-              bg-gradient-to-r
-              from-LogoGradient2
-              via-LogoGradient3
-              to-LogoGradient1
               justify-center 
               items-center 
               gap-2 

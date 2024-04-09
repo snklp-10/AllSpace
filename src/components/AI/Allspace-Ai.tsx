@@ -9,7 +9,7 @@ interface SettingsProps {
 
 const Settings: React.FC<SettingsProps> = ({ children }) => {
   return (
-    <CustomDialogTrigger header="Write with AI" content={<AllspaceAI />}>
+    <CustomDialogTrigger header="AllSpace AI" content={<AllspaceAI />}>
       {children}
     </CustomDialogTrigger>
   );

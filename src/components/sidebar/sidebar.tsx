@@ -18,6 +18,7 @@ import FoldersDropdownList from "./folders-dropdown-list";
 import UserCard from "./user-card";
 import AllSpaceLogo from "../../../public/AllSpace.svg";
 import Image from "next/image";
+import { Pen } from "lucide-react";
 
 interface Sidebarprops {
   params: { workspaceId: string };
@@ -59,6 +60,10 @@ const Sidebar: React.FC<Sidebarprops> = async ({ params, className }) => {
       )}
     >
       <div>
+        <span className="flex gap-1 justify-center items-center text-Nuetrals/nuetrals-7">
+          Workspace
+          <Pen />
+        </span>
         <WorkspaceDropdown
           privateWorkspaces={privateWorkspaces}
           sharedWorkspaces={sharedWorkspaces}

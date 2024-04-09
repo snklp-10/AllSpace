@@ -16,10 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
-// import * as dotenv from "dotenv";
-
-// dotenv.config({ path: ".env" });
-// console.log(process.env.GOOGLE_API_KEY);
+import { ArrowUp, Check, Clipboard, Copy, Send } from "lucide-react";
 
 const FormSchema = z.object({
   Prompt: z.string().min(1, {
@@ -28,6 +25,7 @@ const FormSchema = z.object({
 });
 
 const AllspaceAI = () => {
+  const gemini_key = "AIzaSyAiM1cD1iWvOf8vc7AVmqYc0ndYPHXxdZ8";
   const [response, setResponse] = useState("");
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -52,9 +50,7 @@ const AllspaceAI = () => {
   };
   const onSubmit = (data: z.infer<typeof FormSchema>) => {
     const { GoogleGenerativeAI } = require("@google/generative-ai");
-    const genAI = new GoogleGenerativeAI(
-      "AIzaSyAiM1cD1iWvOf8vc7AVmqYc0ndYPHXxdZ8"
-    );
+    const genAI = new GoogleGenerativeAI(gemini_key);
     async function run() {
       // For text-only input, use the gemini-pro model
       const model = genAI.getGenerativeModel({ model: "gemini-pro" });
@@ -86,22 +82,20 @@ const AllspaceAI = () => {
               </FormItem>
             )}
           />
-          <Button type="submit" className="w-full">
-            Submit
-          </Button>
-          <div className="flex justify-center items-center">
-            <Button
-              variant="secondary"
-              onClick={handleCopyToClipboard}
-              className="w-[300px]"
-            >
-              Copy to Clipboard
+          <div className="flex justify-center items-center gap-2">
+            <Button type="submit" className="w-full">
+              <ArrowUp />
+              Submit
+            </Button>
+
+            <Button variant="secondary" onClick={handleCopyToClipboard}>
+              <Clipboard size={20} />
             </Button>
           </div>
           <Textarea
             value={response}
             onChange={(e) => setResponse(e.target.value)}
-            className="h-[200px]"
+            className="h-[250px] resize-none"
             readOnly
           />
         </form>

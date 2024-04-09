@@ -67,13 +67,13 @@ const NativeNavigation: React.FC<NativeNavigationProps> = ({
           <li
             className="group/native
         flex
-        text-Nuetrals/nuetrals-6
+        text-Nuetrals/nuetrals-7
         transition-all
         gap-2
         cursor-pointer
-        font-bold"
+        "
           >
-            <Sparkles />
+            <Sparkles color="#ffbe0b" />
             <span>AllSpace AI</span>
           </li>
         </AllspaceAI>

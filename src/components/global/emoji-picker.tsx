@@ -24,6 +24,8 @@ const Emojipicker: React.FC<EmojiPickerProps> = ({ children, getvalue }) => {
         <PopoverContent
           className="p-0
         border-none
+        bg-background
+        z-50
         "
         >
           <Picker onEmojiClick={onClick} />
