@@ -25,7 +25,7 @@ const FormSchema = z.object({
 });
 
 const AllspaceAI = () => {
-  const gemini_key = "AIzaSyAiM1cD1iWvOf8vc7AVmqYc0ndYPHXxdZ8";
+  const gemini_key = "zeSqTYhnKLpAIzaSyAiM1cD1iWvOf8vc7AVmqYc0ndYPHXxdZ8";
   const [response, setResponse] = useState("");
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -50,7 +50,9 @@ const AllspaceAI = () => {
   };
   const onSubmit = (data: z.infer<typeof FormSchema>) => {
     const { GoogleGenerativeAI } = require("@google/generative-ai");
-    const genAI = new GoogleGenerativeAI(gemini_key);
+    const genAI = new GoogleGenerativeAI(
+      gemini_key.substring(11, gemini_key.length)
+    );
     async function run() {
       // For text-only input, use the gemini-pro model
       const model = genAI.getGenerativeModel({ model: "gemini-pro" });

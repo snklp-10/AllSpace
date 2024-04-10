@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 import {
   PiArrowRight,
   PiBookOpenTextLight,
+  PiClockLight,
   PiFileThin,
   PiSparkleLight,
   PiTargetLight,
@@ -36,59 +37,38 @@ const font = Lora({
 const tabs = [
   {
     icon: (
-      <PiSparkleLight className="text-3xl mr-2 dark:text-purple-600 dark:bg-purple-100 p-1 rounded-md" />
+      <PiSparkleLight className="text-3xl mr-2 text-purple-600 bg-purple-100 p-1 rounded-md" />
     ),
     name: "AI",
     feature: "Now with Q&A",
-    description: "Ask literally anything. Bird Will answer.",
-    more: (
-      <div className="dark:text-purple-600 flex items-center">
-        Learn more <PiArrowRight className="ml-1 text-sm" />
-      </div>
-    ),
-    image: "/assets/GroovyDoodle.svg",
+    description: "Ask literally anything. AllSpace Will answer.",
+    image: "/assets/AllSpaceAI.svg",
   },
   {
     icon: (
-      <PiBookOpenTextLight className="text-3xl mr-2 dark:text-red-600 dark:bg-red-100 p-1 rounded-md" />
+      <PiClockLight className="text-3xl mr-2 text-red-600 bg-red-100 p-1 rounded-md" />
     ),
-    name: "Wikis",
-    description: "Centralize your knowledge. Make it accessible.",
-    more: (
-      <div className="dark:text-red-600 flex items-center">
-        Learn more <PiArrowRight className="ml-1 text-sm" />
-      </div>
-    ),
-    image: "/assets/PlantDoodle.svg",
+    name: "Realtime",
+    description: "Live, Collaborate, Document: Realtime Solutions.",
+
+    image: "/assets/Realtime.svg",
   },
 
   {
     icon: (
-      <PiTargetLight className="text-3xl mr-2 dark:text-blue-600 dark:bg-blue-100 p-1 rounded-md" />
+      <PiTargetLight className="text-3xl mr-2 text-blue-600 bg-blue-100 p-1 rounded-md" />
     ),
     name: "Projects",
     description: "Manage complex projects without the chaos",
-    more: (
-      <div className="dark:text-blue-600 flex items-center">
-        Learn more <PiArrowRight className="ml-1 text-sm" />
-      </div>
-    ),
-
-    image: "/assets/CoffeeDoddle.svg",
+    image: "/assets/Project.svg",
   },
   {
     icon: (
-      <PiFileThin className="text-3xl mr-2 dark:text-yellow-600 dark:bg-yellow-100 p-1 rounded-md" />
+      <PiFileThin className="text-3xl mr-2 text-yellow-600 bg-yellow-100 p-1 rounded-md" />
     ),
     name: "Docs",
     description: "Simple, powerfulm beautiful. Next-gen notes & docs.",
-    more: (
-      <div className="dark:text-yellow-600 flex items-center">
-        Learn more <PiArrowRight className="ml-1 text-sm" />
-      </div>
-    ),
-
-    image: "/assets/RunningDoodle.svg",
+    image: "/assets/Docs.svg",
   },
 ];
 
@@ -128,9 +108,9 @@ const HomePage = () => {
               </Button>
             </Link>
           </div>
-          <div className="pt-10 xl:pt-20 items-center justify-center">
+          <div className="pt-10 xl:pt-5 items-center justify-center">
             <Image
-              src="/assets/ReadingSideDoodle.svg"
+              src="/assets/new.svg"
               alt="hero image"
               width={1000}
               height={1000}
@@ -243,9 +223,6 @@ const HomePage = () => {
                       </div>
 
                       {/* Conditional rendering for "Learn more" link */}
-                      {activeTab === tab && (
-                        <div className="text-sm mt-2">{tab.more}</div>
-                      )}
                     </motion.div>
                   </div>
                 </motion.div>

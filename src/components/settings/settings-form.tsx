@@ -373,7 +373,7 @@ const SettingsForm = () => {
         <Separator />
         <div className="flex items-center">
           <Avatar>
-            <AvatarImage src={profile?.avatarUrl ? profile.avatarUrl : ""} />
+            <AvatarImage src={profile?.avatarUrl ? profile?.avatarUrl : ""} />
             <AvatarFallback>
               {profile?.email?.slice(0, 1)[0].toUpperCase()}
             </AvatarFallback>
