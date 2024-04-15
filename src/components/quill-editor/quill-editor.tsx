@@ -16,6 +16,7 @@ import {
   findUser,
   getFileDetails,
   getFolderDetails,
+  getFolders,
   getWorkspaceDetails,
   updateFile,
   updateFolder,
@@ -37,6 +38,7 @@ import Emojipicker from "../global/emoji-picker";
 import { XCircleIcon } from "lucide-react";
 import BannerUpload from "../banner-upload/banner-upload";
 import { useSocket } from "@/lib/providers/socket-provider";
+import generatePDF from "react-to-pdf";
 
 interface QuillEditorProps {
   dirDetails: File | Folder | workspace;
@@ -248,7 +250,7 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
         type: "DELETE_FILE",
         payload: { fileId, folderId, workspaceId },
       });
-      // await deleteFile(fileId);
+      await deleteFile(fileId);
       router.replace(`/dashboard/${workspaceId}`);
     }
     if (dirType === "folder") {
@@ -257,7 +259,7 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
         type: "DELETE_FOLDER",
         payload: { folderId: fileId, workspaceId },
       });
-      // await deleteFolder(fileId);
+      await deleteFolder(fileId);
       router.replace(`/dashboard/${workspaceId}`);
     }
   };
@@ -615,7 +617,7 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
                 </TooltipProvider>
               ))}
             </div>
-            <div>
+            <div className=" flex gap-2">
               <Button
                 variant="secondary"
                 onClick={manualSave}
