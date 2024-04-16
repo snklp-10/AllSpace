@@ -11,6 +11,7 @@ import { useMediaQuery } from "react-responsive";
 import { motion } from "framer-motion";
 import {
   PiArrowRight,
+  PiArrowRightBold,
   PiBookOpenTextLight,
   PiClockLight,
   PiFileThin,
@@ -102,7 +103,7 @@ const HomePage = () => {
                 <div className="flex items-center justify-center">
                   <div className="text-lg">Get AllSpace free</div>
                   <div>
-                    <PiArrowRight className="ml-2 " />
+                    <PiArrowRightBold size={20} className="ml-2 " />
                   </div>
                 </div>
               </Button>
@@ -178,14 +179,14 @@ const HomePage = () => {
                 space-x-4
                 xl:pt-4
                 sm:my-10
-               
+                bg-background
                 xl:my-0
                 w-60
                 h-36
                 ${
                   activeTab === tab
-                    ? "border rounded-xl pt-2 dark:bg-white "
-                    : "rounded-xl pt-2  dark:bg-[#f6f5f4] m"
+                    ? "border-2 rounded-xl pt-2 dark:bg-background dark:border-white border-black/50"
+                    : "rounded-xl pt-2 border"
                 }
               `}
                   onMouseEnter={() => setActiveTab(tab)}
@@ -193,9 +194,7 @@ const HomePage = () => {
                   <div className="px-4">
                     <div className="flex items-center">
                       <div>{tab.icon}</div>
-                      <div className="text-2xl font-semibold text-black">
-                        {tab.name}
-                      </div>
+                      <div className="text-2xl font-semibold ">{tab.name}</div>
 
                       {/* Render feature tag only for "AI" tab */}
                       {tab.name === "AI" && (
@@ -245,7 +244,8 @@ const HomePage = () => {
                 xl:p-40
                 shadow-md
                 rounded-xl
-                bg-[#f6f5f4]
+                bg-background
+                border
         "
                 />
               </div>

@@ -13,7 +13,7 @@ import { Label } from "../ui/label";
 import { Emoji } from "emoji-picker-react";
 import { Input } from "../ui/input";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { Subscription, workspace } from "@/lib/supabase/supabase.types";
+import { workspace } from "@/lib/supabase/supabase.types";
 import { CreateWorkspaceFormSchema } from "@/lib/types";
 import { z } from "zod";
 import { useAppState } from "@/lib/providers/state-providers";
@@ -28,13 +28,9 @@ import { Button } from "../ui/button";
 
 interface DashboardSetupProps {
   user: AuthUser;
-  subscription: Subscription | null;
 }
 
-const DashboardSetup: React.FC<DashboardSetupProps> = ({
-  user,
-  subscription,
-}) => {
+const DashboardSetup: React.FC<DashboardSetupProps> = ({ user }) => {
   const { toast } = useToast();
   const router = useRouter();
   const { dispatch } = useAppState();

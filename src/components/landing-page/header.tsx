@@ -4,11 +4,13 @@ import Link from "next/link";
 import React, { useState } from "react";
 import Logo from "../../../public/AllSpace.svg";
 import { Button } from "../ui/button";
+import LogoName from "../../../public/Logo Name.svg";
 
 const Header = () => {
   return (
     <header
-      className="p-4
+      className="p-2
+      px-6
   flex
   justify-center
   items-center
@@ -19,17 +21,18 @@ const Header = () => {
         href={"/"}
         className="w-full
         flex
-        gap-2
+        gap-0
       justify-left
       items-center"
       >
         <Image src={Logo} alt="AllSpace logo" width={31} height={31} />
-        <span
-          className="font-semibold
-        dark:text-white"
-        >
-          AllSpace.
-        </span>
+        <Image
+          src={LogoName}
+          alt="AllSpace name"
+          width={150}
+          height={35}
+          className="-ml-[20px]"
+        ></Image>
       </Link>
       <aside
         className="flex

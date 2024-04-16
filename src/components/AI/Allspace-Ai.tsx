@@ -1,13 +1,12 @@
 import React from "react";
 import CustomDialogTrigger from "../global/custom-dialog-trigger";
-import SettingsForm from "../settings/settings-form";
 import AllspaceAI from "./ai-component";
 
-interface SettingsProps {
+interface AllSpaceProps {
   children: React.ReactNode;
 }
 
-const Settings: React.FC<SettingsProps> = ({ children }) => {
+const AllSpace: React.FC<AllSpaceProps> = ({ children }) => {
   return (
     <CustomDialogTrigger header="AllSpace AI" content={<AllspaceAI />}>
       {children}
@@ -15,4 +14,4 @@ const Settings: React.FC<SettingsProps> = ({ children }) => {
   );
 };
 
-export default Settings;
+export default AllSpace;
