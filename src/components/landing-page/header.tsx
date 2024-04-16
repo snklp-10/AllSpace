@@ -29,7 +29,7 @@ const Header = () => {
         <Image
           src={LogoName}
           alt="AllSpace name"
-          width={150}
+          width={160}
           height={35}
           className="-ml-[20px]"
         ></Image>
