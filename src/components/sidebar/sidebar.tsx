@@ -15,9 +15,8 @@ import NativeNavigation from "./native-navigation";
 import { ScrollArea } from "../ui/scroll-area";
 import FoldersDropdownList from "./folders-dropdown-list";
 import UserCard from "./user-card";
-import AllSpaceLogo from "../../../public/AllSpace.svg";
 import Image from "next/image";
-import { Computer, Pen } from "lucide-react";
+import AllspaceLogo from "../../../public/Logo Name.svg";
 
 interface Sidebarprops {
   params: { workspaceId: string };
@@ -54,12 +53,20 @@ const Sidebar: React.FC<Sidebarprops> = async ({ params, className }) => {
   return (
     <aside
       className={twMerge(
-        "hidden sm:flex sm:flex-col w-[280px] shrink-0 p-4 md:gap-4 !justify-between mt-[50px]",
+        "hidden sm:flex sm:flex-col w-[280px] shrink-0 p-4 md:gap-4 !justify-between ",
         className
       )}
     >
+      <div className="flex items-center justify-center -mt-[10px]">
+        <Image
+          src={AllspaceLogo}
+          alt="Allspace name"
+          width={200}
+          height={200}
+        />
+      </div>
       <div>
-        <span className="flex gap-1 justify-center items-center text-Nuetrals/nuetrals-7">
+        <span className="flex gap-1 justify-center items-center text-Nuetrals/nuetrals-7 ">
           Workspace
         </span>
         <WorkspaceDropdown
