@@ -15,6 +15,10 @@ const Header = () => {
   justify-center
   items-center
   border
+  bg-background
+  top-0
+  sticky
+  z-50
   "
     >
       <Link

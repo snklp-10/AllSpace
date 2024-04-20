@@ -55,7 +55,7 @@ const TitleSection: React.FC<TitleSectionProps> = ({
               {title}
             </h2>
             <p
-              className="dark:text-washed-Purple/washed-purple-700 sm:max-w-[450px]
+              className="dark:text-white sm:max-w-[450px]
                 md:text-center
                 text-center"
             >
