@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Profiler } from "react";
 import { Subscription } from "@/lib/supabase/supabase.types";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
@@ -6,8 +6,9 @@ import db from "@/lib/supabase/db";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import CypressProfileIcon from "../icons/cypressProfileIcon";
 import ModeToggle from "../global/mode-toggle";
-import { LogOut } from "lucide-react";
+import { LogOut, User } from "lucide-react";
 import LogoutButton from "../global/logout-button";
+import { PiCarProfileLight, PiUserLight } from "react-icons/pi";
 
 interface UserCardProps {
   subscription: Subscription | null;
@@ -46,14 +47,15 @@ const UserCard: React.FC<UserCardProps> = async ({ subscription }) => {
       py-2 
      bg-Nuetrals/nuetrals-7/10
       w-full
-      rounded-xl
-  "
+      rounded-2xl"
     >
       <aside className="flex justify-center items-center gap-2">
         <Avatar>
           <AvatarImage src={profile.avatarUrl} />
           <AvatarFallback>
-            <CypressProfileIcon />
+            <div className="rounded-full border p-2 ">
+              <User size={29} />
+            </div>
           </AvatarFallback>
         </Avatar>
         <div className="flex flex-col">
@@ -63,7 +65,7 @@ const UserCard: React.FC<UserCardProps> = async ({ subscription }) => {
           overflow-ellipsis
           "
           >
-            {profile.email}
+            {profile.email?.split("@")[0]}
           </small>
         </div>
       </aside>
