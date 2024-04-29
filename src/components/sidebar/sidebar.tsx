@@ -57,15 +57,7 @@ const Sidebar: React.FC<Sidebarprops> = async ({ params, className }) => {
         className
       )}
     >
-      <div className="flex items-center justify-center -mt-[10px]">
-        <Image
-          src={AllspaceLogo}
-          alt="Allspace name"
-          width={200}
-          height={200}
-        />
-      </div>
-      <div>
+      <div className="mt-2">
         <span className="flex gap-1 justify-center items-center text-Nuetrals/nuetrals-7 ">
           Workspace
         </span>
@@ -79,10 +71,7 @@ const Sidebar: React.FC<Sidebarprops> = async ({ params, className }) => {
             ...sharedWorkspaces,
           ].find((workspace) => workspace.id === params.workspaceId)}
         />
-        {/* <PlanUsage
-          foldersLength={workspaceFolderData?.length || 0}
-          subscription={subscriptionData}
-        /> */}
+
         <NativeNavigation myWorkspaceId={params.workspaceId} />
         <ScrollArea
           className="overflow-scroll relative

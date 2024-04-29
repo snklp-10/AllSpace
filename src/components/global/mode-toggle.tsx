@@ -8,8 +8,9 @@ const ModeToggle = () => {
   const { setTheme, theme } = useTheme();
   return (
     <Button
-      variant={"outline"}
+      variant="ghost"
       size="icon"
+      className="border rounded-xl"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
     >
       <Sun

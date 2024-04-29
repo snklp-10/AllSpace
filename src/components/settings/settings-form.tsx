@@ -296,7 +296,10 @@ const SettingsForm = () => {
                     >
                       <div className="flex gap-4 items-center">
                         <Avatar>
-                          <AvatarImage src={c.avatarUrl ? c.avatarUrl : ""} />
+                          <AvatarImage
+                            src={c.avatarUrl ? c.avatarUrl : ""}
+                            className="rounded-full"
+                          />
                           <AvatarFallback>
                             {c.email?.slice(0, 1)[0].toUpperCase()}
                           </AvatarFallback>
