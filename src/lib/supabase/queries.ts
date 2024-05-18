@@ -41,7 +41,7 @@ export const deleteFile = async (fileId: string) => {
 
 export const deleteFolder = async (folderId: string) => {
   if (!folderId) return;
-  await db.delete(folders).where(eq(files.id, folderId));
+  await db.delete(files).where(eq(files.id, folderId));
 };
 
 export const getFolders = async (workspaceId: string) => {

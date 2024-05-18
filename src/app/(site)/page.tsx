@@ -91,7 +91,8 @@ const HomePage = () => {
             sm:flex-col
             gap-4
             md:justify-center
-            md:items-center"
+            md:items-center
+            "
         >
           <TitleSection
             pill="✨ Your Workspace, Perfected"
